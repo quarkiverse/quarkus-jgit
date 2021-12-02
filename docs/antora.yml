@@ -1,0 +1,5 @@
+name: quarkus-jgit
+title: Quarkus JGit
+version: dev
+nav:
+  - modules/ROOT/nav.adoc
