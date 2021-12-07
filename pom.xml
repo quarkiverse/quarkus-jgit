@@ -29,7 +29,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.version>2.5.1.Final</quarkus.version>
 
-        <jgit.version>5.13.0.202109080827-r</jgit.version>
+        <jgit.version>6.0.0.202111291000-r</jgit.version>
         <quarkus-jsch.version>1.0.0</quarkus-jsch.version>
     </properties>
     <dependencyManagement>
