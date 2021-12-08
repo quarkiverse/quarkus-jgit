@@ -1,8 +1,6 @@
 package io.quarkus.jgit.deployment;
 
-import java.util.Arrays;
-import java.util.List;
-
+import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.ExtensionSslNativeSupportBuildItem;
 import io.quarkus.deployment.builditem.FeatureBuildItem;
@@ -41,13 +39,12 @@ class JGitProcessor {
     }
 
     @BuildStep
-    List<RuntimeInitializedClassBuildItem> runtimeInitializedClasses() {
-        return Arrays.asList(
-                new RuntimeInitializedClassBuildItem("org.eclipse.jgit.transport.HttpAuthMethod$Digest"),
-                new RuntimeInitializedClassBuildItem("org.eclipse.jgit.lib.GpgSigner"),
-                // The following classes use j.u.Ramdom, so they need to be runtime-initialized
-                new RuntimeInitializedClassBuildItem("org.eclipse.jgit.internal.storage.file.WindowCache"),
-                new RuntimeInitializedClassBuildItem("org.eclipse.jgit.util.FileUtils"));
+    void runtimeInitializedClasses(BuildProducer<RuntimeInitializedClassBuildItem> producer) {
+        producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.transport.HttpAuthMethod$Digest"));
+        producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.lib.GpgSigner"));
+        // The following classes use java.util.Random, so they need to be runtime-initialized
+        producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.internal.storage.file.WindowCache"));
+        producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.util.FileUtils"));
     }
 
     @BuildStep
