@@ -6,4 +6,5 @@ metadata:
   - "git"
   categories:
   - "miscellaneous"
+  guide: https://quarkiverse.github.io/quarkiverse-docs/quarkus-jgit/dev/index.html
   status: "stable"
