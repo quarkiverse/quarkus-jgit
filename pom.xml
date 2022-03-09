@@ -19,7 +19,7 @@
     </modules>
     <properties>
         <quarkus.version>2.7.3.Final</quarkus.version>
-        <jgit.version>6.0.0.202111291000-r</jgit.version>
+        <jgit.version>6.1.0.202203080745-r</jgit.version>
         <quarkus-jsch.version>1.0.0</quarkus-jsch.version>
     </properties>
     <dependencyManagement>
