@@ -20,7 +20,7 @@
     <properties>
         <quarkus.version>2.9.0.Final</quarkus.version>
         <jgit.version>6.1.0.202203080745-r</jgit.version>
-        <quarkus-jsch.version>1.0.0</quarkus-jsch.version>
+        <quarkus-jsch.version>2.0.0</quarkus-jsch.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -45,6 +45,16 @@
                 <groupId>org.eclipse.jgit</groupId>
                 <artifactId>org.eclipse.jgit.ssh.jsch</artifactId>
                 <version>${jgit.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.jcraft</groupId>
+                        <artifactId>jsch</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.jcraft</groupId>
+                        <artifactId>jzlib</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>io.quarkiverse.jsch</groupId>
