@@ -4,6 +4,8 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Version](https://img.shields.io/maven-central/v/io.quarkiverse.jgit/quarkus-jgit?logo=apache-maven&style=flat-square)](https://search.maven.org/artifact/io.quarkiverse.jgit/quarkus-jgit)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/quarkiverse/quarkus-jgit.svg?logo=lgtm&logoWidth=18&style=for-the-badge)](https://lgtm.com/projects/g/quarkiverse/quarkus-jgit/alerts/)
+[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/quarkiverse/quarkus-jgit.svg?logo=lgtm&logoWidth=18&style=for-the-badge)](https://lgtm.com/projects/g/quarkiverse/quarkus-jgit/context:java)
 
 ## Introduction
 
