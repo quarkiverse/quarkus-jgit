@@ -42,9 +42,6 @@ class JGitProcessor {
     void runtimeInitializedClasses(BuildProducer<RuntimeInitializedClassBuildItem> producer) {
         producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.transport.HttpAuthMethod$Digest"));
         producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.lib.GpgSigner"));
-        // The following classes use java.util.Random, so they need to be runtime-initialized
-        producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.internal.storage.file.WindowCache"));
-        producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.util.FileUtils"));
     }
 
     @BuildStep
