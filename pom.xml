@@ -22,6 +22,12 @@
         <jgit.version>6.5.0.202303070854-r</jgit.version>
         <quarkus-jsch.version>3.0.0</quarkus-jsch.version>
     </properties>
+    <scm>
+        <connection>scm:git:git@github.com:quarkiverse/quarkus-jgit.git</connection>
+        <developerConnection>scm:git:git@github.com:quarkiverse/quarkus-jgit.git</developerConnection>
+        <url>https://github.com/quarkiverse/quarkus-jgit</url>
+        <tag>HEAD</tag>
+    </scm>
     <dependencyManagement>
         <dependencies>
             <dependency>
