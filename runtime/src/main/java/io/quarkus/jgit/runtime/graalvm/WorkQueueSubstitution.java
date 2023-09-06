@@ -1,14 +1,16 @@
-package io.quarkus.jgit.runtime;
+package io.quarkus.jgit.runtime.graalvm;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
+import org.eclipse.jgit.lib.internal.WorkQueue;
+
 import com.oracle.svm.core.annotate.Substitute;
 import com.oracle.svm.core.annotate.TargetClass;
 
-@TargetClass(className = "org.eclipse.jgit.lib.internal.WorkQueue")
+@TargetClass(WorkQueue.class)
 @Substitute
-public final class WorkQueueSubstitution {
+final class WorkQueueSubstitution {
 
     private static final ScheduledThreadPoolExecutor executor = (ScheduledThreadPoolExecutor) Executors
             .newScheduledThreadPool(1);
