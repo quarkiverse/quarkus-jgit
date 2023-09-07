@@ -12,6 +12,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.storage.file.FileBasedConfig;
+import org.eclipse.jgit.util.SystemReader;
 
 @Path("/jgit")
 public class JGitResource {
@@ -29,5 +31,14 @@ public class JGitResource {
         try (Git git = Git.cloneRepository().setDirectory(tmpDir).setURI(to.toString()).call()) {
             return git.getRepository().getBranch();
         }
+    }
+
+    @GET
+    @Path("/config")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getJGitConfig() throws Exception {
+        FileBasedConfig fileBasedConfig = (FileBasedConfig) SystemReader.getInstance().getJGitConfig();
+        return fileBasedConfig.getFile().getAbsolutePath();
+
     }
 }
