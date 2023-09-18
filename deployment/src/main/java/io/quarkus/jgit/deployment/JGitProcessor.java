@@ -31,7 +31,7 @@ class JGitProcessor {
                         "org.eclipse.jgit.api.MergeCommand$FastForwardMode$Merge",
                         "org.eclipse.jgit.diff.DiffAlgorithm$SupportedAlgorithm",
                         "org.eclipse.jgit.internal.JGitText",
-                        "org.eclipse.jgit.lib.CommitConfig$CommitConfig",
+                        "org.eclipse.jgit.lib.CommitConfig$CleanupMode",
                         "org.eclipse.jgit.lib.CoreConfig$AutoCRLF",
                         "org.eclipse.jgit.lib.CoreConfig$CheckStat",
                         "org.eclipse.jgit.lib.CoreConfig$EOL",

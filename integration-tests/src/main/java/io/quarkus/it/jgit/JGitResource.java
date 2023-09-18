@@ -69,8 +69,8 @@ public class JGitResource {
                     continue;
                 }
                 List<DiffEntry> diffEntries = git.diff()
-                        .setOldTree(prepareTreeParser(git.getRepository(), oldCommit.name()))
-                        .setNewTree(prepareTreeParser(git.getRepository(), commit.name()))
+                        .setOldTree(prepareTreeParser(git.getRepository(), oldCommit))
+                        .setNewTree(prepareTreeParser(git.getRepository(), commit))
                         .call();
                 return diffEntries.size();
             }
@@ -78,10 +78,9 @@ public class JGitResource {
         return -1;
     }
 
-    private AbstractTreeIterator prepareTreeParser(Repository repository, String objectId) throws IOException {
+    private AbstractTreeIterator prepareTreeParser(Repository repository, RevCommit commit) throws IOException {
         // from the commit we can build the tree which allows us to construct the TreeParser
         try (RevWalk walk = new RevWalk(repository)) {
-            RevCommit commit = walk.parseCommit(repository.resolve(objectId));
             RevTree tree = walk.parseTree(commit.getTree().getId());
 
             CanonicalTreeParser treeParser = new CanonicalTreeParser();
