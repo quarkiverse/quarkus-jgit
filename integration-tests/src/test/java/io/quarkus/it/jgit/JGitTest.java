@@ -24,4 +24,9 @@ public class JGitTest {
         given().get("/jgit/config").then().log().ifValidationFails().body(is(expected));
     }
 
+    @Test
+    void shouldDiff() {
+        given().get("/jgit/diff").then().body(is("153"));
+    }
+
 }

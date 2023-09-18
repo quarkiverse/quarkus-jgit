@@ -28,6 +28,7 @@ class JGitProcessor {
         return new ReflectiveClassBuildItem(true, true,
                 "org.eclipse.jgit.api.MergeCommand$FastForwardMode",
                 "org.eclipse.jgit.api.MergeCommand$FastForwardMode$Merge",
+                "org.eclipse.jgit.diff.DiffAlgorithm$SupportedAlgorithm",
                 "org.eclipse.jgit.internal.JGitText",
                 "org.eclipse.jgit.lib.CoreConfig$AutoCRLF",
                 "org.eclipse.jgit.lib.CoreConfig$CheckStat",
