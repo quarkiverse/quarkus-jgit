@@ -39,6 +39,7 @@ class JGitProcessor {
                         "org.eclipse.jgit.lib.CoreConfig$HideDotFiles",
                         "org.eclipse.jgit.lib.CoreConfig$SymLinks",
                         "org.eclipse.jgit.lib.CoreConfig$LogRefUpdates",
+                        "org.eclipse.jgit.lib.CoreConfig$TrustLooseRefStat",
                         "org.eclipse.jgit.lib.CoreConfig$TrustPackedRefsStat")
                 .fields().methods()
                 .build();
