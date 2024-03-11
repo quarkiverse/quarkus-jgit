@@ -18,7 +18,7 @@
         <module>integration-tests</module>
     </modules>
     <properties>
-        <quarkus.version>3.2.10.Final</quarkus.version>
+        <quarkus.version>3.8.2</quarkus.version>
         <jgit.version>6.9.0.202403050737-r</jgit.version>
         <quarkus-jsch.version>3.0.7</quarkus-jsch.version>
     </properties>
