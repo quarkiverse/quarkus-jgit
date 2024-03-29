@@ -1,10 +1,10 @@
 ---
 artifact: ${project.groupId}:${project.artifactId}:${project.version}
-name: "JGit"
+name: "JGit - SSHD"
 metadata:
   keywords:
-  - "git"
+    - "git"
   categories:
-  - "miscellaneous"
+    - "miscellaneous"
   guide: https://docs.quarkiverse.io/quarkus-jgit/dev/index.html
-  status: "stable"
+  status: "experimental"

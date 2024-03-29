@@ -16,11 +16,14 @@
         <module>runtime</module>
         <module>docs</module>
         <module>integration-tests</module>
+        <module>ssh-factories/sshd</module>
+        <module>ssh-factories/jsch</module>
     </modules>
     <properties>
-        <quarkus.version>3.8.2</quarkus.version>
+        <quarkus.version>3.8.3</quarkus.version>
         <jgit.version>6.9.0.202403050737-r</jgit.version>
         <quarkus-jsch.version>3.0.7</quarkus-jsch.version>
+        <quarkus-sshd.version>1.1.0</quarkus-sshd.version>
     </properties>
     <scm>
         <connection>scm:git:git@github.com:quarkiverse/quarkus-jgit.git</connection>
@@ -58,6 +61,11 @@
                 </exclusions>
             </dependency>
             <dependency>
+                <groupId>org.eclipse.jgit</groupId>
+                <artifactId>org.eclipse.jgit.ssh.apache</artifactId>
+                <version>${jgit.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>io.quarkiverse.jsch</groupId>
                 <artifactId>quarkus-jsch</artifactId>
                 <version>${quarkus-jsch.version}</version>
@@ -67,6 +75,16 @@
                 <artifactId>quarkus-jsch-deployment</artifactId>
                 <version>${quarkus-jsch.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.quarkiverse.sshd</groupId>
+                <artifactId>quarkus-sshd</artifactId>
+                <version>${quarkus-sshd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.quarkiverse.sshd</groupId>
+                <artifactId>quarkus-sshd-deployment</artifactId>
+                <version>${quarkus-sshd.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
@@ -75,6 +93,11 @@
                 <plugin>
                     <groupId>io.quarkus</groupId>
                     <artifactId>quarkus-maven-plugin</artifactId>
+                    <version>${quarkus.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>io.quarkus</groupId>
+                    <artifactId>quarkus-extension-maven-plugin</artifactId>
                     <version>${quarkus.version}</version>
                 </plugin>
             </plugins>
