@@ -5,10 +5,4 @@ import io.quarkus.deployment.builditem.FeatureBuildItem;
 
 class JgitJschProcessor {
 
-    private static final String FEATURE = "jgit-jsch";
-
-    @BuildStep
-    FeatureBuildItem feature() {
-        return new FeatureBuildItem(FEATURE);
-    }
 }
