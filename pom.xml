@@ -16,8 +16,8 @@
         <module>runtime</module>
         <module>docs</module>
         <module>integration-tests</module>
-        <module>ssh-factories/sshd</module>
         <module>ssh-factories/jsch</module>
+        <module>ssh-factories/sshd</module>
     </modules>
     <properties>
         <jgit.version>6.9.0.202403050737-r</jgit.version>
