@@ -21,7 +21,7 @@
     </modules>
     <properties>
         <jgit.version>6.9.0.202403050737-r</jgit.version>
-        <quarkus.version>3.8.3</quarkus.version>
+        <quarkus.version>3.8.4</quarkus.version>
         <quarkus-jsch.version>3.0.7</quarkus-jsch.version>
         <quarkus-sshd.version>1.1.0</quarkus-sshd.version>
         <sundr-maven-plugin.version>0.103.1</sundr-maven-plugin.version>
