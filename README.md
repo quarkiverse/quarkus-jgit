@@ -1,6 +1,6 @@
 # Quarkus - JGit
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Version](https://img.shields.io/maven-central/v/io.quarkiverse.jgit/quarkus-jgit?logo=apache-maven&style=flat-square)](https://search.maven.org/artifact/io.quarkiverse.jgit/quarkus-jgit)
@@ -29,6 +29,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="http://gastaldi.wordpress.com"><img src="https://avatars.githubusercontent.com/u/54133?v=4?s=100" width="100px;" alt="George Gastaldi"/><br /><sub><b>George Gastaldi</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-jgit/commits?author=gastaldi" title="Code">💻</a> <a href="#maintenance-gastaldi" title="Maintenance">🚧</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/PierreBtz"><img src="https://avatars.githubusercontent.com/u/9881659?v=4?s=100" width="100px;" alt="Pierre Beitz"/><br /><sub><b>Pierre Beitz</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-jgit/issues?q=author%3APierreBtz" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/kangofchen"><img src="https://avatars.githubusercontent.com/u/12807092?v=4?s=100" width="100px;" alt="kang.chen"/><br /><sub><b>kang.chen</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-jgit/issues?q=author%3Akangofchen" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.logicdrop.com"><img src="https://avatars.githubusercontent.com/u/533810?v=4?s=100" width="100px;" alt="KimJohn Quinn"/><br /><sub><b>KimJohn Quinn</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-jgit/issues?q=author%3Akjq" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
