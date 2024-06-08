@@ -32,6 +32,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "kjq",
+      "name": "KimJohn Quinn",
+      "avatar_url": "https://avatars.githubusercontent.com/u/533810?v=4",
+      "profile": "http://www.logicdrop.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
