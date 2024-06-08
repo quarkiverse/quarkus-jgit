@@ -29,4 +29,12 @@ public class JGitTest {
         given().get("/jgit/diff").then().body(is("153"));
     }
 
+    @Test
+    void shouldRandomBeInitialized() {
+        given().get("/jgit/windowcache_random_initialized").then()
+                .log().ifValidationFails()
+                .statusCode(200)
+                .body(is("true"));
+    }
+
 }

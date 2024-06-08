@@ -47,8 +47,9 @@ class JGitProcessor {
 
     @BuildStep
     void runtimeInitializedClasses(BuildProducer<RuntimeInitializedClassBuildItem> producer) {
-        producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.transport.HttpAuthMethod$Digest"));
+        producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.internal.storage.file.WindowCache"));
         producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.lib.GpgSigner"));
+        producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.transport.HttpAuthMethod$Digest"));
     }
 
     @BuildStep
