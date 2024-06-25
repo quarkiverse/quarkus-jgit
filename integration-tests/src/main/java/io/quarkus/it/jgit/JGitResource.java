@@ -3,6 +3,7 @@ package io.quarkus.it.jgit;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -15,6 +16,7 @@ import jakarta.ws.rs.core.MediaType;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.diff.DiffEntry;
+import org.eclipse.jgit.internal.storage.file.WindowCache;
 import org.eclipse.jgit.lib.ObjectReader;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -41,6 +43,15 @@ public class JGitResource {
         try (Git git = Git.cloneRepository().setDirectory(tmpDir).setURI(to.toString()).call()) {
             return git.getRepository().getBranch();
         }
+    }
+
+    @GET
+    @Path("/windowcache_random_initialized")
+    @Produces(MediaType.TEXT_PLAIN)
+    public boolean windowCacheRandomInitialized() throws Exception {
+        Field field = WindowCache.class.getDeclaredField("rng");
+        field.setAccessible(true);
+        return field.get(WindowCache.getInstance()) != null;
     }
 
     @GET
