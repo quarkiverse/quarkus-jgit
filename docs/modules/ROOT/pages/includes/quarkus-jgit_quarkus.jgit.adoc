@@ -59,23 +59,6 @@ endif::add-copy-button-to-env-var[]
 |int
 |
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-ssh-port]] [.property-path]##`quarkus.jgit.devservices.ssh-port`##
-
-[.description]
---
-The exposed HTTP port for the Gitea container. If not specified, it will pick a random port
-
-
-ifdef::add-copy-button-to-env-var[]
-Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_SSH_PORT+++[]
-endif::add-copy-button-to-env-var[]
-ifndef::add-copy-button-to-env-var[]
-Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_SSH_PORT+++`
-endif::add-copy-button-to-env-var[]
---
-|int
-|
-
 a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-username]] [.property-path]##`quarkus.jgit.devservices.admin-username`##
 
 [.description]

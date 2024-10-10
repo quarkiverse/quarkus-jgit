@@ -35,12 +35,6 @@ public interface JGitBuildTimeConfig {
         OptionalInt httpPort();
 
         /**
-         * The exposed HTTP port for the Gitea container.
-         * If not specified, it will pick a random port
-         */
-        OptionalInt sshPort();
-
-        /**
          * The Admin username for the Gitea container.
          */
         @WithDefault("quarkus")
