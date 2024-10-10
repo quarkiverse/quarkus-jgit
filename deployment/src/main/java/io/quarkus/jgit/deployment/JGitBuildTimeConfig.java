@@ -19,8 +19,14 @@ public interface JGitBuildTimeConfig {
         /**
          * Whether devservice is enabled.
          */
-        @WithDefault("true")
+        @WithDefault("false")
         boolean enabled();
+
+        /**
+         * If logs should be shown from the Gitea container.
+         */
+        @WithDefault("false")
+        boolean showLogs();
 
         /**
          * The exposed HTTP port for the Gitea container.
@@ -46,5 +52,10 @@ public interface JGitBuildTimeConfig {
         @WithDefault("quarkus")
         String adminPassword();
 
+        //        /**
+        //         * Create Hello World repository?
+        //         */
+        //        @WithDefault("true")
+        //        boolean createRepository();
     }
 }

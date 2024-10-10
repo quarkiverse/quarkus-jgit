@@ -72,21 +72,15 @@ class JGitProcessor {
     DevServicesResultBuildItem createContainer(JGitBuildTimeConfig config) {
         var gitServer = new GiteaContainer(config.devservices());
         gitServer.start();
-
-        // Create the admin user
         try {
-            gitServer.createAdminUser();
+            gitServer.postStart();
         } catch (IOException | InterruptedException e) {
-            log.error("Could not create admin user", e);
+            throw new RuntimeException("Failed to configure Gitea container", e);
         }
-
         String httpUrl = gitServer.getHttpUrl();
-        String sshUrl = gitServer.getSshUrl();
         log.infof("Gitea HTTP URL: %s", httpUrl);
-        log.infof("Gitea SSH URL: %s", sshUrl);
         Map<String, String> configOverrides = Map.of(
-                "quarkus.jgit.devservices.http-url", httpUrl,
-                "quarkus.jgit.devservices.ssh-url", sshUrl);
+                "quarkus.jgit.devservices.http-url", httpUrl);
 
         return new DevServicesResultBuildItem.RunningDevService(FEATURE, gitServer.getContainerId(),
                 gitServer::close, configOverrides).toBuildItem();

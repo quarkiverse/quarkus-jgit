@@ -51,8 +51,12 @@ When building a native executable, make sure that the link:{quarkus-guides-url}/
 == DevServices
 
 JGit starts a link:https://about.gitea.com/[Gitea server] for testing purposes.
-The server is started by default when running tests.
-To disable it, set the `quarkus.jgit.devservices.enabled` configuration property to `false`.
+The server is disabled by default when running tests. To enable it, set the `quarkus.jgit.devservices.enabled` configuration property to `true`.
+
+An admin user is created with the following credentials:
+
+- Username: `quarkus`
+- Password: `quarkus`
 
 == Configuration properties
 

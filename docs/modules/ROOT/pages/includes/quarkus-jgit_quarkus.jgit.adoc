@@ -23,7 +23,24 @@ Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_ENABLED+++`
 endif::add-copy-button-to-env-var[]
 --
 |boolean
-|`true`
+|`false`
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-show-logs]] [.property-path]##`quarkus.jgit.devservices.show-logs`##
+
+[.description]
+--
+If logs should be shown from the Gitea container.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_SHOW_LOGS+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_SHOW_LOGS+++`
+endif::add-copy-button-to-env-var[]
+--
+|boolean
+|`false`
 
 a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-http-port]] [.property-path]##`quarkus.jgit.devservices.http-port`##
 
