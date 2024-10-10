@@ -1,5 +1,6 @@
 package io.quarkus.jgit.deployment;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.function.BooleanSupplier;
 
@@ -67,11 +68,16 @@ class JGitProcessor {
     }
 
     @BuildStep(onlyIfNot = IsNormal.class, onlyIf = { GlobalDevServicesConfig.Enabled.class, DevServicesEnabled.class })
-    DevServicesResultBuildItem createContainer() {
-        var gitServer = new GiteaContainer();
+    DevServicesResultBuildItem createContainer(JGitBuildTimeConfig config) {
+        JGitBuildTimeConfig.DevService devservices = config.devservices();
+        var gitServer = new GiteaContainer(devservices);
         gitServer.start();
-
-        String newUrl = "http://" + gitServer.getHost() + ":" + gitServer.getMappedPort(3000);
+        try {
+            gitServer.createAdminUser(devservices.adminUsername(), devservices.adminPassword());
+        } catch (IOException | InterruptedException e) {
+            log.error("Could not create admin user", e);
+        }
+        String newUrl = "http://" + gitServer.getHost() + ":" + gitServer.getFirstMappedPort();
         log.infof("Gitea URL: %s", newUrl);
         Map<String, String> configOverrides = Map.of("quarkus.jgit.devservices.url", newUrl);
 

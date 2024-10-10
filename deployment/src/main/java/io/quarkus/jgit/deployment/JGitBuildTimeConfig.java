@@ -1,5 +1,7 @@
 package io.quarkus.jgit.deployment;
 
+import java.util.OptionalInt;
+
 import io.quarkus.runtime.annotations.ConfigPhase;
 import io.quarkus.runtime.annotations.ConfigRoot;
 import io.smallrye.config.ConfigMapping;
@@ -19,6 +21,24 @@ public interface JGitBuildTimeConfig {
          */
         @WithDefault("true")
         boolean enabled();
+
+        /**
+         * The exposed port for the Gitea container.
+         * If not specified, it will pick a random port
+         */
+        OptionalInt port();
+
+        /**
+         * The Admin username for the Gitea container.
+         */
+        @WithDefault("quarkus")
+        String adminUsername();
+
+        /**
+         * The Admin password for the Gitea container.
+         */
+        @WithDefault("quarkus")
+        String adminPassword();
 
     }
 }

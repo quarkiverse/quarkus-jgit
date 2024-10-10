@@ -25,6 +25,57 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`true`
 
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-port]] [.property-path]##`quarkus.jgit.devservices.port`##
+
+[.description]
+--
+The exposed port for the Gitea container. If not specified, it will pick a random port
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_PORT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_PORT+++`
+endif::add-copy-button-to-env-var[]
+--
+|int
+|
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-username]] [.property-path]##`quarkus.jgit.devservices.admin-username`##
+
+[.description]
+--
+The Admin username for the Gitea container.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_ADMIN_USERNAME+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_ADMIN_USERNAME+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|`quarkus`
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-password]] [.property-path]##`quarkus.jgit.devservices.admin-password`##
+
+[.description]
+--
+The Admin password for the Gitea container.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_ADMIN_PASSWORD+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_ADMIN_PASSWORD+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|`quarkus`
+
 a| [[quarkus-jgit_quarkus-jgit-devservices-url]] [.property-path]##`quarkus.jgit.devservices.url`##
 
 [.description]
