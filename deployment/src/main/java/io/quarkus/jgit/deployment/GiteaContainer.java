@@ -9,7 +9,6 @@ import org.testcontainers.containers.GenericContainer;
 
 class GiteaContainer extends GenericContainer<GiteaContainer> {
 
-    private static final String IMAGE_NAME = "gitea/gitea:latest-rootless";
     /**
      * Logger which will be used to capture container STDOUT and STDERR.
      */
@@ -21,7 +20,7 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
     private JGitBuildTimeConfig.DevService devServiceConfig;
 
     GiteaContainer(JGitBuildTimeConfig.DevService devServiceConfig) {
-        super(IMAGE_NAME);
+        super("gitea/gitea:latest-rootless");
         this.devServiceConfig = devServiceConfig;
         withEnv("GITEA__security__INSTALL_LOCK", "true");
         withExposedPorts(SSH_PORT, HTTP_PORT);
