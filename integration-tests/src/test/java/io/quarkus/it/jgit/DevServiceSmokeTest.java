@@ -18,7 +18,7 @@ public class DevServiceSmokeTest {
     @Test
     public void serviceRunning() {
         given()
-                .get(config.devservices().url())
+                .get(config.devservices().httpUrl().orElseThrow())
                 .then()
                 .statusCode(200);
     }

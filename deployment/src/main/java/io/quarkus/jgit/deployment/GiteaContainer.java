@@ -15,7 +15,8 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
      */
     private static final Logger log = Logger.getLogger(GiteaContainer.class);
 
-    private static final int INTERNAL_PORT = 3000;
+    private static final int SSH_PORT = 2222;
+    private static final int HTTP_PORT = 3000;
 
     private JGitBuildTimeConfig.DevService devServiceConfig;
 
@@ -23,9 +24,10 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         super(IMAGE_NAME);
         this.devServiceConfig = devServiceConfig;
         withEnv("GITEA__security__INSTALL_LOCK", "true");
-        withExposedPorts(INTERNAL_PORT);
-        waitingFor(forListeningPorts(INTERNAL_PORT));
-        devServiceConfig.port().ifPresent(port -> addFixedExposedPort(port, INTERNAL_PORT));
+        withExposedPorts(SSH_PORT, HTTP_PORT);
+        waitingFor(forListeningPorts(SSH_PORT, HTTP_PORT));
+        devServiceConfig.sshPort().ifPresent(port -> addFixedExposedPort(port, SSH_PORT));
+        devServiceConfig.httpPort().ifPresent(port -> addFixedExposedPort(port, HTTP_PORT));
         withLogConsumer(new JBossLoggingConsumer(log));
     }
 
@@ -53,6 +55,11 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
     }
 
     public String getHttpUrl() {
-        return "http://" + getHost() + ":" + getFirstMappedPort();
+        return "http://" + getHost() + ":" + getMappedPort(HTTP_PORT);
     }
+
+    public String getSshUrl() {
+        return "ssh://git@" + getHost() + ":" + getMappedPort(SSH_PORT);
+    }
+
 }

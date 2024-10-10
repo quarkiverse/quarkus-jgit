@@ -80,9 +80,13 @@ class JGitProcessor {
             log.error("Could not create admin user", e);
         }
 
-        String newUrl = gitServer.getHttpUrl();
-        log.infof("Gitea URL: %s", newUrl);
-        Map<String, String> configOverrides = Map.of("quarkus.jgit.devservices.url", newUrl);
+        String httpUrl = gitServer.getHttpUrl();
+        String sshUrl = gitServer.getSshUrl();
+        log.infof("Gitea HTTP URL: %s", httpUrl);
+        log.infof("Gitea SSH URL: %s", sshUrl);
+        Map<String, String> configOverrides = Map.of(
+                "quarkus.jgit.devservices.http-url", httpUrl,
+                "quarkus.jgit.devservices.ssh-url", sshUrl);
 
         return new DevServicesResultBuildItem.RunningDevService(FEATURE, gitServer.getContainerId(),
                 gitServer::close, configOverrides).toBuildItem();

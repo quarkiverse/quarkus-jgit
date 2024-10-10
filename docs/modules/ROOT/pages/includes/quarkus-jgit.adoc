@@ -25,18 +25,35 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`true`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-port]] [.property-path]##`quarkus.jgit.devservices.port`##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-http-port]] [.property-path]##`quarkus.jgit.devservices.http-port`##
 
 [.description]
 --
-The exposed port for the Gitea container. If not specified, it will pick a random port
+The exposed HTTP port for the Gitea container. If not specified, it will pick a random port
 
 
 ifdef::add-copy-button-to-env-var[]
-Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_PORT+++[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_HTTP_PORT+++[]
 endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
-Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_PORT+++`
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_HTTP_PORT+++`
+endif::add-copy-button-to-env-var[]
+--
+|int
+|
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-ssh-port]] [.property-path]##`quarkus.jgit.devservices.ssh-port`##
+
+[.description]
+--
+The exposed HTTP port for the Gitea container. If not specified, it will pick a random port
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_SSH_PORT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_SSH_PORT+++`
 endif::add-copy-button-to-env-var[]
 --
 |int
@@ -76,22 +93,39 @@ endif::add-copy-button-to-env-var[]
 |string
 |`quarkus`
 
-a| [[quarkus-jgit_quarkus-jgit-devservices-url]] [.property-path]##`quarkus.jgit.devservices.url`##
+a| [[quarkus-jgit_quarkus-jgit-devservices-http-url]] [.property-path]##`quarkus.jgit.devservices.http-url`##
 
 [.description]
 --
-The URL of the dev services.
+The HTTP URL of the dev services. Generated once the service is up and running.
 
 
 ifdef::add-copy-button-to-env-var[]
-Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_URL+++[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_HTTP_URL+++[]
 endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
-Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_URL+++`
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_HTTP_URL+++`
 endif::add-copy-button-to-env-var[]
 --
-|string
-|required icon:exclamation-circle[title=Configuration property is required]
+|link:https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URI.html[URI]
+|
+
+a| [[quarkus-jgit_quarkus-jgit-devservices-ssh-url]] [.property-path]##`quarkus.jgit.devservices.ssh-url`##
+
+[.description]
+--
+The SSH URL of the dev services. Generated once the service is up and running.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_SSH_URL+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_SSH_URL+++`
+endif::add-copy-button-to-env-var[]
+--
+|link:https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URI.html[URI]
+|
 
 |===
 
