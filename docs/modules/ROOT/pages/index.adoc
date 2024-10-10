@@ -7,8 +7,7 @@ in a native executable.
 
 == Configuration
 
-Once you have your Quarkus project configured you can add the `jgit` extension
-to your project by running the following command in your project base directory:
+Once you have your Quarkus project configured you can add the `jgit` extension to your project by running the following command in your project base directory:
 
 [source,bash]
 ----
@@ -44,8 +43,17 @@ Here is an example using it in a JAX-RS endpoint:
     }
 ----
 
-
 [WARNING]
 ====
 When building a native executable, make sure that the link:{quarkus-guides-url}/native-and-ssl#the-truststore-path[SSL support is configured appropriately].
 ====
+
+== DevServices
+
+JGit starts a link:https://about.gitea.com/[Gitea server] for testing purposes.
+The server is started by default when running tests.
+To disable it, set the `quarkus.jgit.devservices.enabled` configuration property to `false`.
+
+== Configuration properties
+
+include::./includes/quarkus-jgit.adoc[]

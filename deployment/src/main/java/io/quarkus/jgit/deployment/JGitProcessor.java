@@ -1,16 +1,26 @@
 package io.quarkus.jgit.deployment;
 
+import java.util.Map;
+import java.util.function.BooleanSupplier;
+
+import org.jboss.logging.Logger;
+
+import io.quarkus.deployment.IsNormal;
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
+import io.quarkus.deployment.builditem.DevServicesResultBuildItem;
 import io.quarkus.deployment.builditem.ExtensionSslNativeSupportBuildItem;
 import io.quarkus.deployment.builditem.FeatureBuildItem;
 import io.quarkus.deployment.builditem.nativeimage.NativeImageResourceBundleBuildItem;
 import io.quarkus.deployment.builditem.nativeimage.ReflectiveClassBuildItem;
 import io.quarkus.deployment.builditem.nativeimage.RuntimeInitializedClassBuildItem;
+import io.quarkus.deployment.dev.devservices.GlobalDevServicesConfig;
 
 class JGitProcessor {
 
     private static final String FEATURE = "jgit";
+
+    private static final Logger log = Logger.getLogger(JGitProcessor.class);
 
     @BuildStep
     FeatureBuildItem feature() {
@@ -55,4 +65,32 @@ class JGitProcessor {
     NativeImageResourceBundleBuildItem includeResourceBundle() {
         return new NativeImageResourceBundleBuildItem("org.eclipse.jgit.internal.JGitText");
     }
+
+    @BuildStep(onlyIfNot = IsNormal.class, onlyIf = { GlobalDevServicesConfig.Enabled.class, DevServicesEnabled.class })
+    DevServicesResultBuildItem createContainer() {
+        var gitServer = new GiteaContainer();
+        gitServer.start();
+
+        String newUrl = "http://" + gitServer.getHost() + ":" + gitServer.getMappedPort(3000);
+        log.infof("Gitea URL: %s", newUrl);
+        Map<String, String> configOverrides = Map.of("quarkus.jgit.devservices.url", newUrl);
+
+        return new DevServicesResultBuildItem.RunningDevService(FEATURE, gitServer.getContainerId(),
+                gitServer::close, configOverrides).toBuildItem();
+    }
+
+    public static class DevServicesEnabled implements BooleanSupplier {
+
+        final JGitBuildTimeConfig config;
+
+        public DevServicesEnabled(JGitBuildTimeConfig config) {
+            this.config = config;
+        }
+
+        @Override
+        public boolean getAsBoolean() {
+            return config.devservices().enabled();
+        }
+    }
+
 }
