@@ -67,17 +67,20 @@ class JGitProcessor {
         return new NativeImageResourceBundleBuildItem("org.eclipse.jgit.internal.JGitText");
     }
 
+    @SuppressWarnings("resource")
     @BuildStep(onlyIfNot = IsNormal.class, onlyIf = { GlobalDevServicesConfig.Enabled.class, DevServicesEnabled.class })
     DevServicesResultBuildItem createContainer(JGitBuildTimeConfig config) {
-        JGitBuildTimeConfig.DevService devservices = config.devservices();
-        var gitServer = new GiteaContainer(devservices);
+        var gitServer = new GiteaContainer(config.devservices());
         gitServer.start();
+
+        // Create the admin user
         try {
-            gitServer.createAdminUser(devservices.adminUsername(), devservices.adminPassword());
+            gitServer.createAdminUser();
         } catch (IOException | InterruptedException e) {
             log.error("Could not create admin user", e);
         }
-        String newUrl = "http://" + gitServer.getHost() + ":" + gitServer.getFirstMappedPort();
+
+        String newUrl = gitServer.getHttpUrl();
         log.infof("Gitea URL: %s", newUrl);
         Map<String, String> configOverrides = Map.of("quarkus.jgit.devservices.url", newUrl);
 

@@ -17,8 +17,11 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
 
     private static final int INTERNAL_PORT = 3000;
 
+    private JGitBuildTimeConfig.DevService devServiceConfig;
+
     GiteaContainer(JGitBuildTimeConfig.DevService devServiceConfig) {
         super(IMAGE_NAME);
+        this.devServiceConfig = devServiceConfig;
         withEnv("GITEA__security__INSTALL_LOCK", "true");
         withExposedPorts(INTERNAL_PORT);
         waitingFor(forListeningPorts(INTERNAL_PORT));
@@ -26,16 +29,16 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         withLogConsumer(new JBossLoggingConsumer(log));
     }
 
-    public ExecResult createAdminUser(String user, String password) throws IOException, InterruptedException {
+    public ExecResult createAdminUser() throws IOException, InterruptedException {
         String[] cmd = {
                 "/usr/local/bin/gitea",
                 "admin",
                 "user",
                 "create",
                 "--username",
-                user,
+                devServiceConfig.adminUsername(),
                 "--password",
-                password,
+                devServiceConfig.adminPassword(),
                 "--email",
                 "quarkus@quarkus.io",
                 "--must-change-password=false",
@@ -47,5 +50,9 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
             throw new RuntimeException("Failed to create admin user: " + execResult.getStderr());
         }
         return execResult;
+    }
+
+    public String getHttpUrl() {
+        return "http://" + getHost() + ":" + getFirstMappedPort();
     }
 }
