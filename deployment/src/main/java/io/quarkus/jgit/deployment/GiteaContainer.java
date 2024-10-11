@@ -3,7 +3,6 @@ package io.quarkus.jgit.deployment;
 import static org.testcontainers.containers.wait.strategy.Wait.forListeningPorts;
 
 import java.io.IOException;
-import java.util.Base64;
 
 import org.jboss.logging.Logger;
 import org.testcontainers.containers.GenericContainer;
@@ -29,6 +28,8 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         withExposedPorts(HTTP_PORT);
         withReuse(devServiceConfig.reuse());
         waitingFor(forListeningPorts(HTTP_PORT));
+        // Needed for podman (see https://github.com/testcontainers/testcontainers-java/issues/7310)
+        withStartupAttempts(2);
         devServiceConfig.httpPort().ifPresent(port -> addFixedExposedPort(port, HTTP_PORT));
         if (devServiceConfig.showLogs()) {
             withLogConsumer(new JBossLoggingConsumer(log));
@@ -67,34 +68,6 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         if (execResult.getExitCode() != 0) {
             throw new RuntimeException("Failed to create admin user: " + execResult.getStderr());
         }
-    }
-
-    private void createRepository() throws IOException, InterruptedException {
-        String[] cmd = {
-                "/usr/bin/curl",
-                "-X",
-                "POST",
-                "http://localhost:3000/api/v1/user/repos",
-                "-H",
-                "'Accept: application/json'",
-                "-H",
-                "'Authorization: Basic " + getBasicAuth() + "'",
-                "-H",
-                "'Content-Type: application/json'",
-                "-d",
-                "'{\"auto_init\":true,\"default_branch\":\"main\",\"name\":\"hello-world\",\"private\":false,\"readme\":\"Default\"}'"
-        };
-        log.info(String.join(" ", cmd));
-        ExecResult execResult = execInContainer(cmd);
-        log.info(execResult.getStdout());
-        if (execResult.getExitCode() != 0) {
-            throw new RuntimeException("Failed to create repository: " + execResult.getStderr());
-        }
-    }
-
-    private String getBasicAuth() {
-        String auth = devServiceConfig.adminUsername() + ":" + devServiceConfig.adminPassword();
-        return Base64.getEncoder().encodeToString(auth.getBytes());
     }
 
     public String getHttpUrl() {

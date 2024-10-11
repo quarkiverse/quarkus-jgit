@@ -1,27 +1,16 @@
 package io.quarkus.jgit.deployment;
 
-import java.util.Map;
-import java.util.function.BooleanSupplier;
-
-import org.jboss.logging.Logger;
-
-import io.quarkus.deployment.IsNormal;
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
-import io.quarkus.deployment.builditem.DevServicesResultBuildItem;
 import io.quarkus.deployment.builditem.ExtensionSslNativeSupportBuildItem;
 import io.quarkus.deployment.builditem.FeatureBuildItem;
 import io.quarkus.deployment.builditem.nativeimage.NativeImageResourceBundleBuildItem;
 import io.quarkus.deployment.builditem.nativeimage.ReflectiveClassBuildItem;
 import io.quarkus.deployment.builditem.nativeimage.RuntimeInitializedClassBuildItem;
-import io.quarkus.deployment.dev.devservices.GlobalDevServicesConfig;
-import io.quarkus.devservices.common.ContainerShutdownCloseable;
 
 class JGitProcessor {
 
-    private static final String FEATURE = "jgit";
-
-    private static final Logger log = Logger.getLogger(JGitProcessor.class);
+    static final String FEATURE = "jgit";
 
     @BuildStep
     FeatureBuildItem feature() {
@@ -66,30 +55,4 @@ class JGitProcessor {
     NativeImageResourceBundleBuildItem includeResourceBundle() {
         return new NativeImageResourceBundleBuildItem("org.eclipse.jgit.internal.JGitText");
     }
-
-    @BuildStep(onlyIfNot = IsNormal.class, onlyIf = { GlobalDevServicesConfig.Enabled.class, DevServicesEnabled.class })
-    DevServicesResultBuildItem createContainer(JGitBuildTimeConfig config) {
-        var gitServer = new GiteaContainer(config.devservices());
-        gitServer.start();
-        String httpUrl = gitServer.getHttpUrl();
-        log.infof("Gitea HTTP URL: %s", httpUrl);
-        Map<String, String> configOverrides = Map.of("quarkus.jgit.devservices.http-url", httpUrl);
-        return new DevServicesResultBuildItem.RunningDevService(FEATURE, gitServer.getContainerId(),
-                new ContainerShutdownCloseable(gitServer, FEATURE), configOverrides).toBuildItem();
-    }
-
-    public static class DevServicesEnabled implements BooleanSupplier {
-
-        final JGitBuildTimeConfig config;
-
-        public DevServicesEnabled(JGitBuildTimeConfig config) {
-            this.config = config;
-        }
-
-        @Override
-        public boolean getAsBoolean() {
-            return config.devservices().enabled();
-        }
-    }
-
 }
