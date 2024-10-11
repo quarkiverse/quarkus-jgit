@@ -71,6 +71,10 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
     }
 
     public String getHttpUrl() {
-        return "http://" + getHost() + ":" + getMappedPort(HTTP_PORT);
+        return "http://" + getHost() + ":" + getHttpPort();
+    }
+
+    public int getHttpPort() {
+        return getMappedPort(HTTP_PORT);
     }
 }

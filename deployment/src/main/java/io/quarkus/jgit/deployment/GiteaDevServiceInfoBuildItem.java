@@ -2,34 +2,37 @@ package io.quarkus.jgit.deployment;
 
 import io.quarkus.builder.item.SimpleBuildItem;
 
+/**
+ * A build item that represents the information required to connect to a Gitea dev service.
+ */
 public final class GiteaDevServiceInfoBuildItem extends SimpleBuildItem {
 
-    private final String url;
     private final String host;
-    private final String username;
-    private final String password;
+    private final int httpPort;
+    private final String adminUsername;
+    private final String adminPassword;
 
-    public GiteaDevServiceInfoBuildItem(String url, String host, String username, String password) {
-        this.url = url;
+    public GiteaDevServiceInfoBuildItem(String host, int httpPort, String adminUsername, String adminPassword) {
         this.host = host;
-        this.username = username;
-        this.password = password;
+        this.httpPort = httpPort;
+        this.adminUsername = adminUsername;
+        this.adminPassword = adminPassword;
     }
 
-    public String getUrl() {
-        return url;
+    public int httpPort() {
+        return httpPort;
     }
 
-    public String getHost() {
+    public String host() {
         return host;
     }
 
-    public String getUsername() {
-        return username;
+    public String adminUsername() {
+        return adminUsername;
     }
 
-    public String getPassword() {
-        return password;
+    public String adminPassword() {
+        return adminPassword;
     }
 
 }
