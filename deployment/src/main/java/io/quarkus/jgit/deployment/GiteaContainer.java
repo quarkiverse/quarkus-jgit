@@ -62,7 +62,7 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
                 "--must-change-password=false",
                 "--admin"
         };
-        log.info(String.join(" ", cmd));
+        log.debug(String.join(" ", cmd));
         ExecResult execResult = execInContainer(cmd);
         log.info(execResult.getStdout());
         if (execResult.getExitCode() != 0) {
@@ -71,6 +71,10 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
     }
 
     public String getHttpUrl() {
-        return "http://" + getHost() + ":" + getMappedPort(HTTP_PORT);
+        return "http://" + getHost() + ":" + getHttpPort();
+    }
+
+    public int getHttpPort() {
+        return getMappedPort(HTTP_PORT);
     }
 }

@@ -6,6 +6,7 @@ import java.util.function.BooleanSupplier;
 import org.jboss.logging.Logger;
 
 import io.quarkus.deployment.IsNormal;
+import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.CuratedApplicationShutdownBuildItem;
 import io.quarkus.deployment.builditem.DevServicesResultBuildItem;
@@ -20,7 +21,8 @@ public class JGitDevServicesProcessor {
 
     @BuildStep(onlyIfNot = IsNormal.class, onlyIf = { GlobalDevServicesConfig.Enabled.class, DevServicesEnabled.class })
     DevServicesResultBuildItem createContainer(JGitBuildTimeConfig config,
-            CuratedApplicationShutdownBuildItem closeBuildItem) {
+            CuratedApplicationShutdownBuildItem closeBuildItem,
+            BuildProducer<GiteaDevServiceInfoBuildItem> giteaServiceInfo) {
         if (devService != null) {
             // only produce DevServicesResultBuildItem when the dev service first starts.
             return null;
@@ -34,6 +36,13 @@ public class JGitDevServicesProcessor {
         ContainerShutdownCloseable closeable = new ContainerShutdownCloseable(gitServer, JGitProcessor.FEATURE);
         closeBuildItem.addCloseTask(closeable::close, true);
         devService = new RunningDevService(JGitProcessor.FEATURE, gitServer.getContainerId(), closeable, configOverrides);
+
+        giteaServiceInfo.produce(
+                new GiteaDevServiceInfoBuildItem(
+                        gitServer.getHost(),
+                        gitServer.getHttpPort(),
+                        config.devservices().adminUsername(),
+                        config.devservices().adminPassword()));
         return devService.toBuildItem();
     }
 
