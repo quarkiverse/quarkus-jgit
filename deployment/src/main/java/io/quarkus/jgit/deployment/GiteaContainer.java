@@ -27,6 +27,7 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         withEnv("GITEA__security__INSTALL_LOCK", "true");
         withEnv("GITEA__server__DISABLE_SSH", "true");
         withExposedPorts(HTTP_PORT);
+        withReuse(devServiceConfig.reuse());
         waitingFor(forListeningPorts(HTTP_PORT));
         devServiceConfig.httpPort().ifPresent(port -> addFixedExposedPort(port, HTTP_PORT));
         if (devServiceConfig.showLogs()) {
