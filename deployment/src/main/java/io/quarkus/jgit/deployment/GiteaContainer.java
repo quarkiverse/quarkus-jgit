@@ -28,6 +28,7 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         withEnv("GITEA__server__DISABLE_SSH", "true");
         withExposedPorts(HTTP_PORT);
         waitingFor(forListeningPorts(HTTP_PORT));
+        withReuse(true);
         devServiceConfig.httpPort().ifPresent(port -> addFixedExposedPort(port, HTTP_PORT));
         if (devServiceConfig.showLogs()) {
             withLogConsumer(new JBossLoggingConsumer(log));
@@ -35,11 +36,13 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
     }
 
     @Override
-    protected void containerIsStarted(InspectContainerResponse containerInfo) {
-        try {
-            createAdminUser();
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException("Failed to create admin user", e);
+    protected void containerIsStarted(InspectContainerResponse containerInfo, boolean reused) {
+        if (!reused) {
+            try {
+                createAdminUser();
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException("Failed to create admin user", e);
+            }
         }
     }
 
