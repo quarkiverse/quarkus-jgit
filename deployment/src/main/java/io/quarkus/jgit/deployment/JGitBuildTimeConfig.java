@@ -46,10 +46,10 @@ public interface JGitBuildTimeConfig {
         @WithDefault("quarkus")
         String adminPassword();
 
-        //        /**
-        //         * Create Hello World repository?
-        //         */
-        //        @WithDefault("true")
-        //        boolean createRepository();
+        /**
+         * Should the container be reused?
+         */
+        @WithDefault("false")
+        boolean reuse();
     }
 }
