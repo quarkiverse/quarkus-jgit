@@ -1,6 +1,5 @@
 package io.quarkus.jgit.deployment;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.function.BooleanSupplier;
 
@@ -72,11 +71,6 @@ class JGitProcessor {
     DevServicesResultBuildItem createContainer(JGitBuildTimeConfig config) {
         var gitServer = new GiteaContainer(config.devservices());
         gitServer.start();
-        try {
-            gitServer.postStart();
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException("Failed to configure Gitea container", e);
-        }
         String httpUrl = gitServer.getHttpUrl();
         log.infof("Gitea HTTP URL: %s", httpUrl);
         Map<String, String> configOverrides = Map.of(

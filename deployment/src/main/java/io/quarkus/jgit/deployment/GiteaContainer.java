@@ -8,6 +8,8 @@ import java.util.Base64;
 import org.jboss.logging.Logger;
 import org.testcontainers.containers.GenericContainer;
 
+import com.github.dockerjava.api.command.InspectContainerResponse;
+
 class GiteaContainer extends GenericContainer<GiteaContainer> {
 
     /**
@@ -32,11 +34,13 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         }
     }
 
-    void postStart() throws IOException, InterruptedException {
-        createAdminUser();
-        //        if (devServiceConfig.createRepository()) {
-        //            createRepository();
-        //        }
+    @Override
+    protected void containerIsStarted(InspectContainerResponse containerInfo) {
+        try {
+            createAdminUser();
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("Failed to create admin user", e);
+        }
     }
 
     private void createAdminUser() throws IOException, InterruptedException {
