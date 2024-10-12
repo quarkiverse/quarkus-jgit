@@ -14,7 +14,7 @@ The main purpose of this extension is to make JGit work in a native executable b
 
 ## Documentation
 
-The documentation for this extension can be found [here](https://quarkiverse.github.io/quarkiverse-docs/quarkus-jgit/dev/index.html).
+The documentation for this extension can be found [here](https://docs.quarkiverse.io/quarkus-jgit/dev/index.html).
 
 ## Contributors ✨
 
