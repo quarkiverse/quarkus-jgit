@@ -8,7 +8,7 @@ h|[.header-title]##Configuration property##
 h|Type
 h|Default
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-enabled]] [.property-path]##`quarkus.jgit.devservices.enabled`##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-enabled]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-enabled[`quarkus.jgit.devservices.enabled`]##
 
 [.description]
 --
@@ -25,7 +25,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`false`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-show-logs]] [.property-path]##`quarkus.jgit.devservices.show-logs`##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-show-logs]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-show-logs[`quarkus.jgit.devservices.show-logs`]##
 
 [.description]
 --
@@ -42,7 +42,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`false`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-http-port]] [.property-path]##`quarkus.jgit.devservices.http-port`##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-http-port]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-http-port[`quarkus.jgit.devservices.http-port`]##
 
 [.description]
 --
@@ -59,7 +59,7 @@ endif::add-copy-button-to-env-var[]
 |int
 |
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-username]] [.property-path]##`quarkus.jgit.devservices.admin-username`##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-username]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-admin-username[`quarkus.jgit.devservices.admin-username`]##
 
 [.description]
 --
@@ -76,7 +76,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |`quarkus`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-password]] [.property-path]##`quarkus.jgit.devservices.admin-password`##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-password]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-admin-password[`quarkus.jgit.devservices.admin-password`]##
 
 [.description]
 --
@@ -93,7 +93,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |`quarkus`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-reuse]] [.property-path]##`quarkus.jgit.devservices.reuse`##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-reuse]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-reuse[`quarkus.jgit.devservices.reuse`]##
 
 [.description]
 --
@@ -110,7 +110,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`false`
 
-a| [[quarkus-jgit_quarkus-jgit-devservices-http-url]] [.property-path]##`quarkus.jgit.devservices.http-url`##
+a| [[quarkus-jgit_quarkus-jgit-devservices-http-url]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-http-url[`quarkus.jgit.devservices.http-url`]##
 
 [.description]
 --
