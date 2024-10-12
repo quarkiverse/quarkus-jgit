@@ -41,6 +41,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "iocanel",
+      "name": "Ioannis Canellos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/402008?v=4",
+      "profile": "http://iocanel.blogspot.com",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
