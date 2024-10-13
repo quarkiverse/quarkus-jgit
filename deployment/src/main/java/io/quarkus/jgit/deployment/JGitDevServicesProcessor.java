@@ -37,12 +37,11 @@ public class JGitDevServicesProcessor {
         closeBuildItem.addCloseTask(closeable::close, true);
         devService = new RunningDevService(JGitProcessor.FEATURE, gitServer.getContainerId(), closeable, configOverrides);
 
-        giteaServiceInfo.produce(
-                new GiteaDevServiceInfoBuildItem(
-                        gitServer.getHost(),
-                        gitServer.getHttpPort(),
-                        config.devservices().adminUsername(),
-                        config.devservices().adminPassword()));
+        giteaServiceInfo.produce(new GiteaDevServiceInfoBuildItem(
+                gitServer.getHost(),
+                gitServer.getHttpPort(),
+                config.devservices().adminUsername(),
+                config.devservices().adminPassword()));
         return devService.toBuildItem();
     }
 
@@ -59,5 +58,4 @@ public class JGitDevServicesProcessor {
             return config.devservices().enabled();
         }
     }
-
 }
