@@ -6,5 +6,8 @@ metadata:
   - "git"
   categories:
   - "miscellaneous"
+  config:
+    - "quarkus.jgit."
   guide: https://quarkiverse.github.io/quarkiverse-docs/quarkus-jgit/dev/index.html
+  icon-url: "https://raw.githubusercontent.com/quarkiverse/quarkus-jgit/main/docs/modules/ROOT/assets/images/jgit.svg"
   status: "stable"
