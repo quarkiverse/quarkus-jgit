@@ -35,6 +35,7 @@ Thanks go to these wonderful people ([emoji key](https://allcontributors.org/doc
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/kangofchen"><img src="https://avatars.githubusercontent.com/u/12807092?v=4?s=100" width="100px;" alt="kang.chen"/><br /><sub><b>kang.chen</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-jgit/issues?q=author%3Akangofchen" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://www.logicdrop.com"><img src="https://avatars.githubusercontent.com/u/533810?v=4?s=100" width="100px;" alt="KimJohn Quinn"/><br /><sub><b>KimJohn Quinn</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-jgit/issues?q=author%3Akjq" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://iocanel.blogspot.com"><img src="https://avatars.githubusercontent.com/u/402008?v=4?s=100" width="100px;" alt="Ioannis Canellos"/><br /><sub><b>Ioannis Canellos</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-jgit/commits?author=iocanel" title="Code">💻</a> <a href="#ideas-iocanel" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://melloware.com"><img src="https://avatars.githubusercontent.com/u/4399574?v=4?s=100" width="100px;" alt="Melloware"/><br /><sub><b>Melloware</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-jgit/commits?author=melloware" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
