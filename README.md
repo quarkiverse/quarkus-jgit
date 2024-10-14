@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/quarkiverse/quarkus-jgit/blob/main/docs/modules/ROOT/assets/images/quarkus.svg" width="67" height="70" ><img src="https://github.com/quarkiverse/quarkus-jgit/blob/main/docs/modules/ROOT/assets/images/plus-sign.svg" height="70" ><img src="https://github.com/quarkiverse/quarkus-jgit/blob/main/docs/modules/ROOT/assets/images/jgit.svg" height="70" >
+<img src="https://github.com/quarkiverse/.github/blob/main/assets/images/quarkus.svg" width="67" height="70" ><img src="https://github.com/quarkiverse/.github/blob/main/assets/images/plus-sign.svg" height="70" ><img src="https://github.com/quarkiverse/quarkus-jgit/blob/main/docs/modules/ROOT/assets/images/jgit.svg" height="70" >
 
 # Quarkus JGit
 </div>
