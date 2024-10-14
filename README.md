@@ -1,9 +1,13 @@
-# Quarkus - JGit
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<div align="center">
+<img src="https://github.com/quarkiverse/quarkus-jgit/blob/main/docs/modules/ROOT/assets/images/quarkus.svg" width="67" height="70" ><img src="https://github.com/quarkiverse/quarkus-jgit/blob/main/docs/modules/ROOT/assets/images/plus-sign.svg" height="70" ><img src="https://github.com/quarkiverse/quarkus-jgit/blob/main/docs/modules/ROOT/assets/images/jgit.svg" height="70" >
+
+# Quarkus JGit
+</div>
+<br>
 
 [![Version](https://img.shields.io/maven-central/v/io.quarkiverse.jgit/quarkus-jgit?logo=apache-maven&style=flat-square)](https://search.maven.org/artifact/io.quarkiverse.jgit/quarkus-jgit)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
+[![Build](https://github.com/quarkiverse/quarkus-jgit/actions/workflows/build.yml/badge.svg)](https://github.com/quarkiverse/quarkus-jgit/actions/workflows/build.yml)
 
 ## Introduction
 
