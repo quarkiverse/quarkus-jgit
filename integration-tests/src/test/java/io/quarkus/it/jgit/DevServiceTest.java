@@ -16,6 +16,8 @@ import org.eclipse.microprofile.config.ConfigProvider;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import io.gitea.ApiClient;
 import io.gitea.Configuration;
@@ -63,10 +65,16 @@ public class DevServiceTest {
                 .statusCode(200);
     }
 
-    @Test
-    public void shouldCloneFromDevService(@TempDir Path tempDir) throws Exception {
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "test-repo", // The repository created in the @BeforeAll method
+            "quarkus-jgit-integration-tests", //The project repository created by the Dev Service
+            "extra-repo1", // An extra repository created by the Dev Service
+            "extra-repo2" // An other extra repository created by the Dev Service
+    })
+    public void shouldCloneFromDevService(String repositoryName, @TempDir Path tempDir) throws Exception {
         try (Git git = Git.cloneRepository().setDirectory(tempDir.toFile())
-                .setURI(config.devservices().httpUrl().get() + "/quarkus/test-repo.git").call()) {
+                .setURI(config.devservices().httpUrl().get() + "/quarkus/" + repositoryName + ".git").call()) {
             assertThat(tempDir.resolve("README.md")).isRegularFile();
             assertThat(git.log().call()).extracting(RevCommit::getFullMessage).map(String::trim).contains("Initial commit");
         }

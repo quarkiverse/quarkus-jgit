@@ -3,6 +3,9 @@ package io.quarkus.jgit.deployment;
 import static org.testcontainers.containers.wait.strategy.Wait.forListeningPorts;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.jboss.logging.Logger;
 import org.testcontainers.containers.GenericContainer;
@@ -15,10 +18,10 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
      * Logger which will be used to capture container STDOUT and STDERR.
      */
     private static final Logger log = Logger.getLogger(GiteaContainer.class);
-
     private static final int HTTP_PORT = 3000;
 
     private JGitBuildTimeConfig.DevService devServiceConfig;
+    private List<String> repositories = new ArrayList<>();
 
     GiteaContainer(JGitBuildTimeConfig.DevService devServiceConfig) {
         super("gitea/gitea:latest-rootless");
@@ -41,6 +44,9 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         if (!reused) {
             try {
                 createAdminUser();
+                for (String repository : devServiceConfig.repositories().orElse(Collections.emptyList())) {
+                    createRepository(this, repository);
+                }
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException("Failed to create admin user", e);
             }
@@ -70,11 +76,46 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         }
     }
 
+    private void createRepository(GiteaContainer giteaContainer, String repository)
+            throws UnsupportedOperationException, IOException, InterruptedException {
+        String httpUrl = "http://localhost:" + GiteaContainer.HTTP_PORT;
+        String data = """
+                {"name":"%s", "private":false, "auto_init":true, "readme":"Default"}
+                """
+                .formatted(repository);
+
+        String[] cmd = {
+                "/usr/bin/curl",
+                "-X",
+                "POST",
+                "--user",
+                devServiceConfig.adminUsername() + ":" + devServiceConfig.adminPassword(),
+                "-H",
+                "Content-Type: application/json",
+                "-d",
+                data,
+                httpUrl + "/api/v1/user/repos"
+        };
+
+        log.debug(String.join(" ", cmd));
+        ExecResult execResult = giteaContainer.execInContainer(cmd);
+        log.info(execResult.getStdout());
+        if (execResult.getExitCode() != 0) {
+            throw new RuntimeException("Failed to create repository: " + repository + ":" + execResult.getStderr());
+        }
+        repositories.add(repository);
+        log.info("Created repository: " + repository);
+    }
+
     public String getHttpUrl() {
         return "http://" + getHost() + ":" + getHttpPort();
     }
 
     public int getHttpPort() {
         return getMappedPort(HTTP_PORT);
+    }
+
+    public List<String> getRepositories() {
+        return repositories;
     }
 }
