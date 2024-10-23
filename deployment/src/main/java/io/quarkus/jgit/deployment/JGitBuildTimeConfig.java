@@ -1,6 +1,7 @@
 package io.quarkus.jgit.deployment;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.OptionalInt;
 
 import io.quarkus.runtime.annotations.ConfigPhase;
@@ -51,7 +52,7 @@ public interface JGitBuildTimeConfig {
          * Repositories to be created when the Dev Service starts.
          */
         @WithDefault("${quarkus.application.name}")
-        List<String> repositories();
+        Optional<List<String>> repositories();
 
         /**
          * Should the container be reused?

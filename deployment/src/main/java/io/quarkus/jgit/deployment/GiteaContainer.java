@@ -4,6 +4,7 @@ import static org.testcontainers.containers.wait.strategy.Wait.forListeningPorts
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.jboss.logging.Logger;
@@ -43,7 +44,7 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         if (!reused) {
             try {
                 createAdminUser();
-                for (String repository : devServiceConfig.repositories()) {
+                for (String repository : devServiceConfig.repositories().orElse(Collections.emptyList())) {
                     createRepository(this, repository);
                 }
             } catch (IOException | InterruptedException e) {
