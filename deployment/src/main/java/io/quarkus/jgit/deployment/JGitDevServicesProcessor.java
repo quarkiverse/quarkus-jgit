@@ -41,7 +41,8 @@ public class JGitDevServicesProcessor {
                 gitServer.getHost(),
                 gitServer.getHttpPort(),
                 config.devservices().adminUsername(),
-                config.devservices().adminPassword()));
+                config.devservices().adminPassword(),
+                gitServer.getRepositories()));
         return devService.toBuildItem();
     }
 

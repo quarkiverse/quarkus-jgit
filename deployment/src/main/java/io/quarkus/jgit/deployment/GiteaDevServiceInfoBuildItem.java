@@ -1,5 +1,7 @@
 package io.quarkus.jgit.deployment;
 
+import java.util.List;
+
 import io.quarkus.builder.item.SimpleBuildItem;
 
 /**
@@ -11,12 +13,15 @@ public final class GiteaDevServiceInfoBuildItem extends SimpleBuildItem {
     private final int httpPort;
     private final String adminUsername;
     private final String adminPassword;
+    private final List<String> repositories;
 
-    public GiteaDevServiceInfoBuildItem(String host, int httpPort, String adminUsername, String adminPassword) {
+    public GiteaDevServiceInfoBuildItem(String host, int httpPort, String adminUsername, String adminPassword,
+            List<String> repositories) {
         this.host = host;
         this.httpPort = httpPort;
         this.adminUsername = adminUsername;
         this.adminPassword = adminPassword;
+        this.repositories = repositories;
     }
 
     public int httpPort() {
@@ -35,4 +40,7 @@ public final class GiteaDevServiceInfoBuildItem extends SimpleBuildItem {
         return adminPassword;
     }
 
+    public List<String> repositories() {
+        return repositories;
+    }
 }

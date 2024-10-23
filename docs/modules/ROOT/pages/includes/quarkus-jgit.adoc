@@ -93,6 +93,23 @@ endif::add-copy-button-to-env-var[]
 |string
 |`quarkus`
 
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-repositories]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-repositories[`quarkus.jgit.devservices.repositories`]##
+
+[.description]
+--
+Repositories to be created when the Dev Service starts.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_REPOSITORIES+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_REPOSITORIES+++`
+endif::add-copy-button-to-env-var[]
+--
+|list of string
+|`${quarkus.application.name}`
+
 a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-reuse]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-reuse[`quarkus.jgit.devservices.reuse`]##
 
 [.description]
