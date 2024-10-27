@@ -1,7 +1,8 @@
 package io.quarkus.jgit.deployment;
 
 import java.util.Map;
-import java.util.function.BooleanSupplier;
+import java.util.Optional;
+import java.util.OptionalInt;
 
 import org.jboss.logging.Logger;
 
@@ -19,19 +20,29 @@ public class JGitDevServicesProcessor {
     private static final Logger log = Logger.getLogger(JGitDevServicesProcessor.class);
     static volatile RunningDevService devService;
 
-    @BuildStep(onlyIfNot = IsNormal.class, onlyIf = { GlobalDevServicesConfig.Enabled.class, DevServicesEnabled.class })
+    @BuildStep(onlyIfNot = IsNormal.class, onlyIf = { GlobalDevServicesConfig.Enabled.class })
     DevServicesResultBuildItem createContainer(JGitBuildTimeConfig config,
+            Optional<GiteaDevServiceRequestBuildItem> devServiceRequest,
             CuratedApplicationShutdownBuildItem closeBuildItem,
             BuildProducer<GiteaDevServiceInfoBuildItem> giteaServiceInfo) {
         if (devService != null) {
             // only produce DevServicesResultBuildItem when the dev service first starts.
             return null;
         }
-        var gitServer = new GiteaContainer(config.devservices());
+
+        if (!config.devservices().enabled() && !devServiceRequest.isPresent()) {
+            // JGit Dev Service not enabled
+            return null;
+        }
+        var gitServer = new GiteaContainer(config.devservices(), devServiceRequest);
         gitServer.start();
         String httpUrl = gitServer.getHttpUrl();
         log.infof("Gitea HTTP URL: %s", httpUrl);
         Map<String, String> configOverrides = Map.of("quarkus.jgit.devservices.http-url", httpUrl);
+
+        Optional<String> sharedNetworkHost = config.devservices().networkAlias()
+                .or(() -> devServiceRequest.map(GiteaDevServiceRequestBuildItem::getAlias));
+        OptionalInt sharedNetworkHttpPort = OptionalInt.of(GiteaContainer.HTTP_PORT);
 
         ContainerShutdownCloseable closeable = new ContainerShutdownCloseable(gitServer, JGitProcessor.FEATURE);
         closeBuildItem.addCloseTask(closeable::close, true);
@@ -40,23 +51,11 @@ public class JGitDevServicesProcessor {
         giteaServiceInfo.produce(new GiteaDevServiceInfoBuildItem(
                 gitServer.getHost(),
                 gitServer.getHttpPort(),
+                sharedNetworkHost,
+                sharedNetworkHttpPort,
                 config.devservices().adminUsername(),
                 config.devservices().adminPassword(),
                 gitServer.getRepositories()));
         return devService.toBuildItem();
-    }
-
-    public static class DevServicesEnabled implements BooleanSupplier {
-
-        final JGitBuildTimeConfig config;
-
-        public DevServicesEnabled(JGitBuildTimeConfig config) {
-            this.config = config;
-        }
-
-        @Override
-        public boolean getAsBoolean() {
-            return config.devservices().enabled();
-        }
     }
 }

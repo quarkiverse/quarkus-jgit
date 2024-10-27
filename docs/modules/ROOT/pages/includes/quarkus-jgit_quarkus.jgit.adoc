@@ -127,6 +127,23 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`false`
 
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-network-alias]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-network-alias[`quarkus.jgit.devservices.network-alias`]##
+
+[.description]
+--
+The network alias for the container. Other containers in the same network can use this alias to connect to this container.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_NETWORK_ALIAS+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_NETWORK_ALIAS+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|
+
 a| [[quarkus-jgit_quarkus-jgit-devservices-http-url]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-http-url[`quarkus.jgit.devservices.http-url`]##
 
 [.description]

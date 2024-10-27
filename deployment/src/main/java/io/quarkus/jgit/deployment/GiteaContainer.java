@@ -6,9 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.jboss.logging.Logger;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.containers.Network;
 
 import com.github.dockerjava.api.command.InspectContainerResponse;
 
@@ -18,12 +20,13 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
      * Logger which will be used to capture container STDOUT and STDERR.
      */
     private static final Logger log = Logger.getLogger(GiteaContainer.class);
-    private static final int HTTP_PORT = 3000;
+    static final int HTTP_PORT = 3000;
 
     private JGitBuildTimeConfig.DevService devServiceConfig;
     private List<String> repositories = new ArrayList<>();
 
-    GiteaContainer(JGitBuildTimeConfig.DevService devServiceConfig) {
+    GiteaContainer(JGitBuildTimeConfig.DevService devServiceConfig,
+            Optional<GiteaDevServiceRequestBuildItem> devServiceRequest) {
         super("gitea/gitea:latest-rootless");
         this.devServiceConfig = devServiceConfig;
         withEnv("GITEA__security__INSTALL_LOCK", "true");
@@ -33,6 +36,14 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         waitingFor(forListeningPorts(HTTP_PORT));
         // Needed for podman (see https://github.com/testcontainers/testcontainers-java/issues/7310)
         withStartupAttempts(2);
+
+        Optional<String> networkAlias = devServiceConfig.networkAlias()
+                .or(() -> devServiceRequest.map(GiteaDevServiceRequestBuildItem::getAlias));
+        networkAlias.ifPresent(alias -> {
+            withNetworkAliases(alias);
+            withNetwork(Network.SHARED);
+        });
+
         devServiceConfig.httpPort().ifPresent(port -> addFixedExposedPort(port, HTTP_PORT));
         if (devServiceConfig.showLogs()) {
             withLogConsumer(new JBossLoggingConsumer(log));

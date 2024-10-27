@@ -59,5 +59,11 @@ public interface JGitBuildTimeConfig {
          */
         @WithDefault("false")
         boolean reuse();
+
+        /**
+         * The network alias for the container.
+         * Other containers in the same network can use this alias to connect to this container.
+         */
+        Optional<String> networkAlias();
     }
 }
