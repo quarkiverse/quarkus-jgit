@@ -19,20 +19,23 @@ public final class GiteaDevServiceInfoBuildItem extends SimpleBuildItem {
 
     private final String adminUsername;
     private final String adminPassword;
+    private final String organization;
     private final List<String> repositories;
 
     public GiteaDevServiceInfoBuildItem(String host, int httpPort, String adminUsername, String adminPassword,
-            List<String> repositories) {
-        this(host, httpPort, Optional.empty(), OptionalInt.empty(), adminUsername, adminPassword, repositories);
+            String organization, List<String> repositories) {
+        this(host, httpPort, Optional.empty(), OptionalInt.empty(), adminUsername, adminPassword, organization, repositories);
     }
 
     public GiteaDevServiceInfoBuildItem(String host, int httpPort, Optional<String> sharedNetworkHost,
-            OptionalInt sharedNetworkHttpPort, String adminUsername, String adminPassword, List<String> repositories) {
+            OptionalInt sharedNetworkHttpPort, String adminUsername, String adminPassword, String organization,
+            List<String> repositories) {
         this.host = host;
         this.httpPort = httpPort;
         this.sharedNetworkHost = sharedNetworkHost;
         this.sharedNetworkHttpPort = sharedNetworkHttpPort;
         this.adminUsername = adminUsername;
+        this.organization = organization;
         this.adminPassword = adminPassword;
         this.repositories = repositories;
     }
@@ -51,6 +54,10 @@ public final class GiteaDevServiceInfoBuildItem extends SimpleBuildItem {
 
     public String adminPassword() {
         return adminPassword;
+    }
+
+    public String organization() {
+        return organization;
     }
 
     public List<String> repositories() {

@@ -49,6 +49,12 @@ public interface JGitBuildTimeConfig {
         String adminPassword();
 
         /**
+         * The organization to be created when the Dev Service starts.
+         */
+        @WithDefault("dev")
+        String organization();
+
+        /**
          * Repositories to be created when the Dev Service starts.
          */
         @WithDefault("${quarkus.application.name}")

@@ -55,6 +55,7 @@ public class JGitDevServicesProcessor {
                 sharedNetworkHttpPort,
                 config.devservices().adminUsername(),
                 config.devservices().adminPassword(),
+                config.devservices().organization(),
                 gitServer.getRepositories()));
         return devService.toBuildItem();
     }

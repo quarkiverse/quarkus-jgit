@@ -55,8 +55,9 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         if (!reused) {
             try {
                 createAdminUser();
+                createOrganization(this, devServiceConfig.organization());
                 for (String repository : devServiceConfig.repositories().orElse(Collections.emptyList())) {
-                    createRepository(this, repository);
+                    createRepository(this, devServiceConfig.organization(), repository);
                 }
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException("Failed to create admin user", e);
@@ -87,9 +88,40 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
         }
     }
 
-    private void createRepository(GiteaContainer giteaContainer, String repository)
+    private void createOrganization(GiteaContainer giteaContainer, String org)
             throws UnsupportedOperationException, IOException, InterruptedException {
-        String httpUrl = "http://localhost:" + GiteaContainer.HTTP_PORT;
+        String httpUrl = "http://localhost:" + GiteaContainer.HTTP_PORT + "/api/v1/orgs";
+        String data = """
+                {"username":"%s"}
+                """
+                .formatted(org);
+
+        String[] cmd = {
+                "/usr/bin/curl",
+                "-X",
+                "POST",
+                "--user",
+                devServiceConfig.adminUsername() + ":" + devServiceConfig.adminPassword(),
+                "-H",
+                "Content-Type: application/json",
+                "-d",
+                data,
+                httpUrl
+        };
+
+        log.debug(String.join(" ", cmd));
+        ExecResult execResult = giteaContainer.execInContainer(cmd);
+        log.info(execResult.getStdout());
+        if (execResult.getExitCode() != 0) {
+            throw new RuntimeException("Failed to create organization: " + org + ":" + execResult.getStderr());
+        }
+        repositories.add(org);
+        log.info("Created organization: " + org);
+    }
+
+    private void createRepository(GiteaContainer giteaContainer, String org, String repository)
+            throws UnsupportedOperationException, IOException, InterruptedException {
+        String httpUrl = "http://localhost:" + GiteaContainer.HTTP_PORT + "/api/v1/orgs/" + org + "/repos";
         String data = """
                 {"name":"%s", "private":false, "auto_init":true, "readme":"Default"}
                 """
@@ -105,7 +137,7 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
                 "Content-Type: application/json",
                 "-d",
                 data,
-                httpUrl + "/api/v1/user/repos"
+                httpUrl
         };
 
         log.debug(String.join(" ", cmd));
