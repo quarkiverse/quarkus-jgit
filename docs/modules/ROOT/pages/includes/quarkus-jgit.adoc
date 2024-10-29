@@ -93,7 +93,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |`quarkus`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-organization]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-organization[`quarkus.jgit.devservices.organization`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-organizations]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-organizations[`quarkus.jgit.devservices.organizations`]##
 
 [.description]
 --
@@ -101,20 +101,20 @@ The organization to be created when the Dev Service starts.
 
 
 ifdef::add-copy-button-to-env-var[]
-Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_ORGANIZATION+++[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_ORGANIZATIONS+++[]
 endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
-Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_ORGANIZATION+++`
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_ORGANIZATIONS+++`
 endif::add-copy-button-to-env-var[]
 --
-|string
-|`dev`
+|list of string
+|
 
 a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-repositories]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-repositories[`quarkus.jgit.devservices.repositories`]##
 
 [.description]
 --
-Repositories to be created when the Dev Service starts.
+Repositories to be created when the Dev Service starts. A repository may optionally include an organization reference. For example, "my-org/my-repo" will create a repository named "my-repo" in the "my-org" organization. The organization will be created if missing. If no organization is specified, the repository will be created as a user repository.
 
 
 ifdef::add-copy-button-to-env-var[]
