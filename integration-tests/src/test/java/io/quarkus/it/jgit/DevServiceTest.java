@@ -17,11 +17,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import io.gitea.ApiClient;
 import io.gitea.Configuration;
-import io.gitea.api.RepositoryApi;
+import io.gitea.api.OrganizationApi;
 import io.gitea.auth.HttpBasicAuth;
 import io.gitea.model.CreateRepoOption;
 import io.quarkus.jgit.runtime.JGitRuntimeConfig;
@@ -48,13 +48,12 @@ public class DevServiceTest {
         basicAuth.setUsername("quarkus");
         basicAuth.setPassword("quarkus");
 
-        RepositoryApi api = new RepositoryApi();
-        api.createCurrentUserRepo(new CreateRepoOption()
+        OrganizationApi orgApi = new OrganizationApi();
+        orgApi.createOrgRepo("dev", new CreateRepoOption()
                 .autoInit(true)
                 ._private(false)
                 .name("test-repo")
                 .readme("Default"));
-
     }
 
     @Test
@@ -66,15 +65,17 @@ public class DevServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {
-            "test-repo", // The repository created in the @BeforeAll method
-            "quarkus-jgit-integration-tests", //The project repository created by the Dev Service
-            "extra-repo1", // An extra repository created by the Dev Service
-            "extra-repo2" // An other extra repository created by the Dev Service
+    @CsvSource({
+            "dev, test-repo",
+            "quarkus, quarkus-jgit-integration-tests", //The project repository created by the Dev Service
+            "quarkus, extra-repo1", // An extra repository created by the Dev Service
+            "quarkus, extra-repo2", // An other extra repository created by the Dev Service
+            "dev, dev/extra-repo3" // A repo with an org
     })
-    public void shouldCloneFromDevService(String repositoryName, @TempDir Path tempDir) throws Exception {
+    public void shouldCloneFromDevService(String orgName, String repositoryName, @TempDir Path tempDir) throws Exception {
+        repositoryName = repositoryName.replaceAll("^.*/", ""); //Remove org prefix if exists
         try (Git git = Git.cloneRepository().setDirectory(tempDir.toFile())
-                .setURI(config.devservices().httpUrl().get() + "/quarkus/" + repositoryName + ".git").call()) {
+                .setURI(config.devservices().httpUrl().get() + "/" + orgName + "/" + repositoryName + ".git").call()) {
             assertThat(tempDir.resolve("README.md")).isRegularFile();
             assertThat(git.log().call()).extracting(RevCommit::getFullMessage).map(String::trim).contains("Initial commit");
         }
@@ -83,7 +84,7 @@ public class DevServiceTest {
     @Test
     public void shouldPushToDevService(@TempDir Path tempDir) throws Exception {
         try (Git git = Git.cloneRepository().setDirectory(tempDir.resolve("original").toFile())
-                .setURI(config.devservices().httpUrl().get() + "/quarkus/test-repo.git").call()) {
+                .setURI(config.devservices().httpUrl().get() + "/dev/test-repo.git").call()) {
             Path readme = tempDir.resolve("original").resolve("README.md");
             Files.writeString(readme, "Hello, World!");
             // Perform commit
@@ -91,7 +92,7 @@ public class DevServiceTest {
             git.push().call();
         }
         try (Git git = Git.cloneRepository().setDirectory(tempDir.resolve("updated").toFile())
-                .setURI(config.devservices().httpUrl().get() + "/quarkus/test-repo.git").call()) {
+                .setURI(config.devservices().httpUrl().get() + "/dev/test-repo.git").call()) {
             assertThat(tempDir.resolve("updated").resolve("README.md")).hasContent("Hello, World!");
         }
     }

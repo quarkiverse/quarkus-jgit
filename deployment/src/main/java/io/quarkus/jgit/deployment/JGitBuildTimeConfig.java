@@ -49,7 +49,16 @@ public interface JGitBuildTimeConfig {
         String adminPassword();
 
         /**
+         * The organization to be created when the Dev Service starts.
+         */
+        Optional<List<String>> organizations();
+
+        /**
          * Repositories to be created when the Dev Service starts.
+         * A repository may optionally include an organization reference.
+         * For example, "my-org/my-repo" will create a repository named "my-repo" in the "my-org" organization.
+         * The organization will be created if missing.
+         * If no organization is specified, the repository will be created as a user repository.
          */
         @WithDefault("${quarkus.application.name}")
         Optional<List<String>> repositories();
@@ -59,5 +68,11 @@ public interface JGitBuildTimeConfig {
          */
         @WithDefault("false")
         boolean reuse();
+
+        /**
+         * The network alias for the container.
+         * Other containers in the same network can use this alias to connect to this container.
+         */
+        Optional<String> networkAlias();
     }
 }
