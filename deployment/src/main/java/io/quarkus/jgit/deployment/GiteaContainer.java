@@ -128,7 +128,7 @@ class GiteaContainer extends GenericContainer<GiteaContainer> {
 
         log.debug(String.join(" ", cmd));
         ExecResult execResult = execInContainer(cmd);
-        log.info(execResult.getStdout());
+        log.debug(execResult.getStdout());
         if (execResult.getExitCode() != 0) {
             throw new RuntimeException("Failed to create organization: " + org + ":" + execResult.getStderr());
         }
