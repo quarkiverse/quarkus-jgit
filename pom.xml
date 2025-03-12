@@ -18,7 +18,7 @@
     <properties>
         <quarkus.version>3.15.1</quarkus.version>
         <jgit.version>7.1.0.202411261347-r</jgit.version>
-        <quarkus-jsch.version>3.0.13</quarkus-jsch.version>
+        <quarkus-jsch.version>3.0.14</quarkus-jsch.version>
     </properties>
     <scm>
         <connection>scm:git:git@github.com:quarkiverse/quarkus-jgit.git</connection>
