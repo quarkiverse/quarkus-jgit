@@ -1,5 +1,12 @@
 package io.quarkus.jgit.deployment;
 
+import org.eclipse.jgit.api.MergeCommand;
+import org.eclipse.jgit.diff.DiffAlgorithm;
+import org.eclipse.jgit.dircache.DirCache;
+import org.eclipse.jgit.internal.JGitText;
+import org.eclipse.jgit.lib.CommitConfig;
+import org.eclipse.jgit.lib.CoreConfig;
+
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.ExtensionSslNativeSupportBuildItem;
@@ -25,24 +32,22 @@ class JGitProcessor {
     @BuildStep
     ReflectiveClassBuildItem reflection() {
         //Classes that use reflection
-        return ReflectiveClassBuildItem
-                .builder("org.eclipse.jgit.api.MergeCommand$ConflictStyle",
-                        "org.eclipse.jgit.api.MergeCommand$FastForwardMode",
-                        "org.eclipse.jgit.api.MergeCommand$FastForwardMode$Merge",
-                        "org.eclipse.jgit.diff.DiffAlgorithm$SupportedAlgorithm",
-                        "org.eclipse.jgit.internal.JGitText",
-                        "org.eclipse.jgit.lib.CommitConfig$CleanupMode",
-                        "org.eclipse.jgit.lib.CoreConfig$AutoCRLF",
-                        "org.eclipse.jgit.lib.CoreConfig$CheckStat",
-                        "org.eclipse.jgit.lib.CoreConfig$EOL",
-                        "org.eclipse.jgit.lib.CoreConfig$EolStreamType",
-                        "org.eclipse.jgit.lib.CoreConfig$HideDotFiles",
-                        "org.eclipse.jgit.lib.CoreConfig$SymLinks",
-                        "org.eclipse.jgit.lib.CoreConfig$LogRefUpdates",
-                        "org.eclipse.jgit.lib.CoreConfig$TrustLooseRefStat",
-                        "org.eclipse.jgit.lib.CoreConfig$TrustPackedRefsStat")
-                .fields().methods()
-                .build();
+        return ReflectiveClassBuildItem.builder(
+                MergeCommand.ConflictStyle.class,
+                MergeCommand.FastForwardMode.class,
+                MergeCommand.FastForwardMode.Merge.class,
+                DiffAlgorithm.SupportedAlgorithm.class,
+                JGitText.class,
+                CommitConfig.CleanupMode.class,
+                CoreConfig.AutoCRLF.class,
+                CoreConfig.CheckStat.class,
+                CoreConfig.EOL.class,
+                CoreConfig.EolStreamType.class,
+                CoreConfig.HideDotFiles.class,
+                CoreConfig.SymLinks.class,
+                CoreConfig.LogRefUpdates.class,
+                CoreConfig.TrustStat.class,
+                DirCache.DirCacheVersion.class).fields().methods().build();
     }
 
     @BuildStep
