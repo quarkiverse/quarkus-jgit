@@ -1,6 +1,6 @@
 :quarkus-version: 3.15.1
-:quarkus-jgit-version: 3.4.0
-:project-version: 3.4.0
+:quarkus-jgit-version: 3.4.1
+:project-version: 3.4.1
 :examples-dir: ./../examples/
 
 :quarkus-org-url: https://github.com/quarkusio
