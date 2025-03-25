@@ -6,6 +6,7 @@ import org.eclipse.jgit.dircache.DirCache;
 import org.eclipse.jgit.internal.JGitText;
 import org.eclipse.jgit.lib.CommitConfig;
 import org.eclipse.jgit.lib.CoreConfig;
+import org.eclipse.jgit.lib.GpgConfig;
 
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
@@ -47,7 +48,8 @@ class JGitProcessor {
                 CoreConfig.SymLinks.class,
                 CoreConfig.LogRefUpdates.class,
                 CoreConfig.TrustStat.class,
-                DirCache.DirCacheVersion.class).fields().methods().build();
+                DirCache.DirCacheVersion.class,
+                GpgConfig.GpgFormat.class).fields().methods().build();
     }
 
     @BuildStep
