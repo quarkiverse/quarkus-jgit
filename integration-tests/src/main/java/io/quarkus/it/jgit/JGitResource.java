@@ -9,7 +9,9 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -87,6 +89,25 @@ public class JGitResource {
             }
         }
         return -1;
+    }
+
+    @POST
+    @Path("/commit")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String commit(String commitComment) throws Exception {
+        URL resource = getClass().getClassLoader().getResource("repos/booster-catalog.bundle");
+        java.nio.file.Path to = Files.createTempFile("gitRepositoryBundle", ".bundle");
+        try (InputStream is = resource.openStream()) {
+            Files.copy(is, to, StandardCopyOption.REPLACE_EXISTING);
+        }
+        File tmpDir = Files.createTempDirectory("tmpgit").toFile();
+        try (Git git = Git.cloneRepository().setDirectory(tmpDir).setURI(to.toString()).call()) {
+            Files.writeString(tmpDir.toPath().resolve("test.txt"), "Test file content");
+            git.add().addFilepattern(".").call();
+            RevCommit commit = git.commit().setCommitter("test", "test@test.com").setMessage(commitComment).call();
+            return commit.getId().getName();
+        }
     }
 
     private AbstractTreeIterator prepareTreeParser(Repository repository, RevCommit commit) throws IOException {

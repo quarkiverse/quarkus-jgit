@@ -1,6 +1,7 @@
 package io.quarkus.it.jgit;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.matchesRegex;
 import static org.hamcrest.core.Is.is;
 
 import org.eclipse.jgit.storage.file.FileBasedConfig;
@@ -37,4 +38,13 @@ public class JGitTest {
                 .body(is("true"));
     }
 
+    @Test
+    void shouldCommit() {
+        given().body("Test commit")
+                .post("/jgit/commit")
+                .then()
+                .log().ifValidationFails()
+                .statusCode(200)
+                .body(matchesRegex("^[a-f0-9]{40}$"));
+    }
 }
