@@ -105,7 +105,8 @@ public class JGitResource {
         try (Git git = Git.cloneRepository().setDirectory(tmpDir).setURI(to.toString()).call()) {
             Files.writeString(tmpDir.toPath().resolve("test.txt"), "Test file content");
             git.add().addFilepattern(".").call();
-            RevCommit commit = git.commit().setCommitter("test", "test@test.com").setMessage(commitComment).call();
+            RevCommit commit = git.commit().setSign(false).setCommitter("test", "test@test.com").setMessage(commitComment)
+                    .call();
             return commit.getId().getName();
         }
     }
