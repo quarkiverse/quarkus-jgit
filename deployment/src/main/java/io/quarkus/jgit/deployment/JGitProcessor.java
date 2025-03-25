@@ -4,9 +4,16 @@ import org.eclipse.jgit.api.MergeCommand;
 import org.eclipse.jgit.diff.DiffAlgorithm;
 import org.eclipse.jgit.dircache.DirCache;
 import org.eclipse.jgit.internal.JGitText;
+import org.eclipse.jgit.lib.BranchConfig;
 import org.eclipse.jgit.lib.CommitConfig;
 import org.eclipse.jgit.lib.CoreConfig;
 import org.eclipse.jgit.lib.GpgConfig;
+import org.eclipse.jgit.lib.IndexDiff;
+import org.eclipse.jgit.lib.ObjectChecker;
+import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.lib.RefUpdate;
+import org.eclipse.jgit.lib.SignatureVerifier;
+import org.eclipse.jgit.lib.SubmoduleConfig;
 
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
@@ -34,22 +41,29 @@ class JGitProcessor {
     ReflectiveClassBuildItem reflection() {
         //Classes that use reflection
         return ReflectiveClassBuildItem.builder(
-                MergeCommand.ConflictStyle.class,
-                MergeCommand.FastForwardMode.class,
-                MergeCommand.FastForwardMode.Merge.class,
-                DiffAlgorithm.SupportedAlgorithm.class,
-                JGitText.class,
+                BranchConfig.BranchRebaseMode.class,
                 CommitConfig.CleanupMode.class,
                 CoreConfig.AutoCRLF.class,
                 CoreConfig.CheckStat.class,
                 CoreConfig.EOL.class,
                 CoreConfig.EolStreamType.class,
                 CoreConfig.HideDotFiles.class,
-                CoreConfig.SymLinks.class,
                 CoreConfig.LogRefUpdates.class,
+                CoreConfig.SymLinks.class,
                 CoreConfig.TrustStat.class,
+                DiffAlgorithm.SupportedAlgorithm.class,
                 DirCache.DirCacheVersion.class,
-                GpgConfig.GpgFormat.class).fields().methods().build();
+                GpgConfig.GpgFormat.class,
+                IndexDiff.StageState.class,
+                JGitText.class,
+                ObjectChecker.ErrorType.class,
+                MergeCommand.ConflictStyle.class,
+                MergeCommand.FastForwardMode.Merge.class,
+                MergeCommand.FastForwardMode.class,
+                Ref.Storage.class,
+                RefUpdate.Result.class,
+                SignatureVerifier.TrustLevel.class,
+                SubmoduleConfig.FetchRecurseSubmodulesMode.class).fields().methods().build();
     }
 
     @BuildStep
