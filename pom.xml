@@ -8,7 +8,7 @@
     </parent>
     <groupId>io.quarkiverse.jgit</groupId>
     <artifactId>quarkus-jgit-parent</artifactId>
-    <version>999-SNAPSHOT</version>
+    <version>3.4.2</version>
     <packaging>pom</packaging>
     <name>Quarkus - JGit - Parent</name>
     <modules>
@@ -24,7 +24,7 @@
         <connection>scm:git:git@github.com:quarkiverse/quarkus-jgit.git</connection>
         <developerConnection>scm:git:git@github.com:quarkiverse/quarkus-jgit.git</developerConnection>
         <url>https://github.com/quarkiverse/quarkus-jgit</url>
-        <tag>3.3.3</tag>
+        <tag>3.4.2</tag>
     </scm>
     <dependencyManagement>
         <dependencies>
