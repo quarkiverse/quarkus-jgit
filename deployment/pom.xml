@@ -8,6 +8,7 @@
     </parent>
     <artifactId>quarkus-jgit-deployment</artifactId>
     <name>Quarkus - JGit - Deployment</name>
+    <description>Quarkus - JGit - Deployment</description>
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>
