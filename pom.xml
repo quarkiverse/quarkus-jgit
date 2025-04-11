@@ -24,7 +24,6 @@
         <connection>scm:git:git@github.com:quarkiverse/quarkus-jgit.git</connection>
         <developerConnection>scm:git:git@github.com:quarkiverse/quarkus-jgit.git</developerConnection>
         <url>https://github.com/quarkiverse/quarkus-jgit</url>
-        <tag>3.3.3</tag>
     </scm>
     <dependencyManagement>
         <dependencies>
