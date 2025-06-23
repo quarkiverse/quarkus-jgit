@@ -14,6 +14,7 @@ import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.RefUpdate;
 import org.eclipse.jgit.lib.SignatureVerifier;
 import org.eclipse.jgit.lib.SubmoduleConfig;
+import org.eclipse.jgit.transport.HttpConfig;
 
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
@@ -54,6 +55,7 @@ class JGitProcessor {
                 DiffAlgorithm.SupportedAlgorithm.class,
                 DirCache.DirCacheVersion.class,
                 GpgConfig.GpgFormat.class,
+                HttpConfig.HttpRedirectMode.class,
                 IndexDiff.StageState.class,
                 JGitText.class,
                 ObjectChecker.ErrorType.class,
