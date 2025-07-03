@@ -12,7 +12,7 @@ import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.CuratedApplicationShutdownBuildItem;
 import io.quarkus.deployment.builditem.DevServicesResultBuildItem;
 import io.quarkus.deployment.builditem.DevServicesResultBuildItem.RunningDevService;
-import io.quarkus.deployment.dev.devservices.GlobalDevServicesConfig;
+import io.quarkus.deployment.dev.devservices.DevServicesConfig;
 import io.quarkus.devservices.common.ContainerShutdownCloseable;
 
 public class JGitDevServicesProcessor {
@@ -20,7 +20,7 @@ public class JGitDevServicesProcessor {
     private static final Logger log = Logger.getLogger(JGitDevServicesProcessor.class);
     static volatile RunningDevService devService;
 
-    @BuildStep(onlyIfNot = IsNormal.class, onlyIf = { GlobalDevServicesConfig.Enabled.class })
+    @BuildStep(onlyIfNot = IsNormal.class, onlyIf = { DevServicesConfig.Enabled.class })
     DevServicesResultBuildItem createContainer(JGitBuildTimeConfig config,
             Optional<GiteaDevServiceRequestBuildItem> devServiceRequest,
             CuratedApplicationShutdownBuildItem closeBuildItem,
