@@ -26,7 +26,7 @@ Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_ENABLED+++`
 endif::add-copy-button-to-env-var[]
 --
 |boolean
-|`false`
+|`+++false+++`
 
 a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-show-logs]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-show-logs[`quarkus.jgit.devservices.show-logs`]##
 ifdef::add-copy-button-to-config-props[]
@@ -47,7 +47,7 @@ Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_SHOW_LOGS+++`
 endif::add-copy-button-to-env-var[]
 --
 |boolean
-|`false`
+|`+++false+++`
 
 a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-http-port]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-http-port[`quarkus.jgit.devservices.http-port`]##
 ifdef::add-copy-button-to-config-props[]
@@ -89,7 +89,7 @@ Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_ADMIN_USERNAME+++`
 endif::add-copy-button-to-env-var[]
 --
 |string
-|`quarkus`
+|`+++quarkus+++`
 
 a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-password]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-admin-password[`quarkus.jgit.devservices.admin-password`]##
 ifdef::add-copy-button-to-config-props[]
@@ -110,7 +110,7 @@ Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_ADMIN_PASSWORD+++`
 endif::add-copy-button-to-env-var[]
 --
 |string
-|`quarkus`
+|`+++quarkus+++`
 
 a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-organizations]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-organizations[`quarkus.jgit.devservices.organizations`]##
 ifdef::add-copy-button-to-config-props[]
@@ -152,7 +152,7 @@ Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_REPOSITORIES+++`
 endif::add-copy-button-to-env-var[]
 --
 |list of string
-|`${quarkus.application.name}`
+|`+++${quarkus.application.name}+++`
 
 a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-reuse]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-reuse[`quarkus.jgit.devservices.reuse`]##
 ifdef::add-copy-button-to-config-props[]
@@ -173,7 +173,7 @@ Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_REUSE+++`
 endif::add-copy-button-to-env-var[]
 --
 |boolean
-|`false`
+|`+++false+++`
 
 a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-network-alias]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-network-alias[`quarkus.jgit.devservices.network-alias`]##
 ifdef::add-copy-button-to-config-props[]
