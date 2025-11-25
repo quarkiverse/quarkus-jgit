@@ -10,4 +10,5 @@ metadata:
     - "quarkus.jgit."
   guide: https://quarkiverse.github.io/quarkiverse-docs/quarkus-jgit/dev/index.html
   icon-url: "https://raw.githubusercontent.com/quarkiverse/quarkus-jgit/main/docs/modules/ROOT/assets/images/jgit.svg"
+  lib-ga: org.eclipse.jgit:org.eclipse.jgit[https://projects.eclipse.org/projects/technology.jgit]
   status: "stable"
