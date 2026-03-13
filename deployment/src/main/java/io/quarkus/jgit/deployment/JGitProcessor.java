@@ -7,6 +7,7 @@ import org.eclipse.jgit.internal.JGitText;
 import org.eclipse.jgit.lib.BranchConfig;
 import org.eclipse.jgit.lib.CommitConfig;
 import org.eclipse.jgit.lib.CoreConfig;
+import org.eclipse.jgit.lib.GcConfig;
 import org.eclipse.jgit.lib.GpgConfig;
 import org.eclipse.jgit.lib.IndexDiff;
 import org.eclipse.jgit.lib.ObjectChecker;
@@ -54,6 +55,7 @@ class JGitProcessor {
                 CoreConfig.TrustStat.class,
                 DiffAlgorithm.SupportedAlgorithm.class,
                 DirCache.DirCacheVersion.class,
+                GcConfig.PackRefsMode.class,
                 GpgConfig.GpgFormat.class,
                 HttpConfig.HttpRedirectMode.class,
                 IndexDiff.StageState.class,
