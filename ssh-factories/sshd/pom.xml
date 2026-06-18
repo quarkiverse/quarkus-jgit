@@ -13,6 +13,19 @@
     <modules>
         <module>runtime</module>
         <module>deployment</module>
-        <module>integration-tests</module>
     </modules>
+    <profiles>
+        <profile>
+            <id>unreleased-modules</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>!true</value>
+                </property>
+            </activation>
+            <modules>
+                <module>integration-tests</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>

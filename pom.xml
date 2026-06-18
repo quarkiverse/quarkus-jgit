@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.quarkiverse</groupId>
         <artifactId>quarkiverse-parent</artifactId>
-        <version>16</version>
+        <version>22</version>
     </parent>
     <groupId>io.quarkiverse.jgit</groupId>
     <artifactId>quarkus-jgit-parent</artifactId>
@@ -14,24 +14,21 @@
     <modules>
         <module>deployment</module>
         <module>runtime</module>
-        <module>docs</module>
-        <module>integration-tests</module>
         <module>ssh-factories/jsch</module>
         <module>ssh-factories/sshd</module>
     </modules>
     <properties>
-        <quarkus.version>3.8.4</quarkus.version>
-        <jgit.version>6.10.0.202406032230-r</jgit.version>
-        <quarkus-jsch.version>3.0.8</quarkus-jsch.version>
+        <quarkus.version>3.27.1</quarkus.version>
+        <jgit.version>7.7.0.202606012155-r</jgit.version>
+        <quarkus-jsch.version>3.2.0</quarkus-jsch.version>
         <quarkus-sshd.version>1.1.0</quarkus-sshd.version>
-        <sundr-maven-plugin.version>0.103.1</sundr-maven-plugin.version>
     </properties>
     <scm>
         <connection>scm:git:git@github.com:quarkiverse/quarkus-jgit.git</connection>
         <developerConnection>scm:git:git@github.com:quarkiverse/quarkus-jgit.git</developerConnection>
         <url>https://github.com/quarkiverse/quarkus-jgit</url>
-        <tag>HEAD</tag>
-    </scm>
+      <tag>HEAD</tag>
+  </scm>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -93,10 +90,9 @@
             <plugin>
                 <groupId>io.sundr</groupId>
                 <artifactId>sundr-maven-plugin</artifactId>
-                <version>${sundr-maven-plugin.version}</version>
+                <version>0.300.0</version>
                 <executions>
                     <execution>
-                        <inherited>false</inherited>
                         <goals>
                             <goal>generate-bom</goal>
                         </goals>
@@ -105,18 +101,21 @@
                                 <bom>
                                     <artifactId>quarkus-jgit-bom</artifactId>
                                     <name>Quarkus JGit: BOM</name>
-                                    <description>Centralized dependencyManagement for the Quarkus JGit Project</description>
-                                    <properties>
-                                        <skipStagingRepositoryClose>true</skipStagingRepositoryClose>
-                                        <sonar.skip>true</sonar.skip>
-                                    </properties>
+                                    <description>Centralized dependencyManagement for the Quarkus JGit Project
+                                    </description>
+                                    <dependencies>
+                                        <includes>
+                                            <include>org.eclipse.jgit:*</include>
+                                        </includes>
+                                    </dependencies>
                                     <modules>
                                         <excludes>
-                                            <exclude>*:*-docs</exclude>
-                                            <exclude>*:*-integration-tests</exclude>
+                                            <exclude>io.quarkiverse.jgit:quarkus-jgit-docs</exclude>
+                                            <exclude>io.quarkiverse.jgit:quarkus-jgit-integration-tests</exclude>
+                                            <exclude>io.quarkiverse.jgit:quarkus-jgit-jsch-integration-tests</exclude>
+                                            <exclude>io.quarkiverse.jgit:quarkus-jgit-sshd-integration-tests</exclude>
                                         </excludes>
                                     </modules>
-
                                 </bom>
                             </boms>
                         </configuration>
@@ -133,10 +132,56 @@
                 </plugin>
                 <plugin>
                     <groupId>io.quarkus</groupId>
-                    <artifactId>quarkus-extension-maven-plugin</artifactId>
+                    <artifactId>quarkus-config-doc-maven-plugin</artifactId>
                     <version>${quarkus.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
+    <profiles>
+        <profile>
+            <id>unreleased-modules</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>!true</value>
+                </property>
+            </activation>
+            <modules>
+                <module>docs</module>
+                <module>integration-tests</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>flatten-poms</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>flatten-maven-plugin</artifactId>
+                        <inherited>true</inherited>
+                        <executions>
+                            <execution>
+                                <id>flatten</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>flatten</goal>
+                                </goals>
+                                <configuration>
+                                    <flattenMode>ossrh</flattenMode>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>

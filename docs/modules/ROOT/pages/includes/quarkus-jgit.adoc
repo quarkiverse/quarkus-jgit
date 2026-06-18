@@ -1,0 +1,221 @@
+[.configuration-legend]
+icon:lock[title=Fixed at build time] Configuration property fixed at build time - All other configuration properties are overridable at runtime
+[.configuration-reference.searchable, cols="80,.^10,.^10"]
+|===
+
+h|[.header-title]##Configuration property##
+h|Type
+h|Default
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-enabled]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-enabled[`quarkus.jgit.devservices.enabled`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.jgit.devservices.enabled+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+Whether devservice is enabled.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--
+|boolean
+|`+++false+++`
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-show-logs]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-show-logs[`quarkus.jgit.devservices.show-logs`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.jgit.devservices.show-logs+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+If logs should be shown from the Gitea container.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_SHOW_LOGS+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_SHOW_LOGS+++`
+endif::add-copy-button-to-env-var[]
+--
+|boolean
+|`+++false+++`
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-http-port]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-http-port[`quarkus.jgit.devservices.http-port`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.jgit.devservices.http-port+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+The exposed HTTP port for the Gitea container. If not specified, it will pick a random port
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_HTTP_PORT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_HTTP_PORT+++`
+endif::add-copy-button-to-env-var[]
+--
+|int
+|
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-username]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-admin-username[`quarkus.jgit.devservices.admin-username`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.jgit.devservices.admin-username+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+The Admin username for the Gitea container.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_ADMIN_USERNAME+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_ADMIN_USERNAME+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|`+++quarkus+++`
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-password]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-admin-password[`quarkus.jgit.devservices.admin-password`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.jgit.devservices.admin-password+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+The Admin password for the Gitea container.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_ADMIN_PASSWORD+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_ADMIN_PASSWORD+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|`+++quarkus+++`
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-organizations]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-organizations[`quarkus.jgit.devservices.organizations`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.jgit.devservices.organizations+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+The organization to be created when the Dev Service starts.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_ORGANIZATIONS+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_ORGANIZATIONS+++`
+endif::add-copy-button-to-env-var[]
+--
+|list of string
+|
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-repositories]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-repositories[`quarkus.jgit.devservices.repositories`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.jgit.devservices.repositories+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+Repositories to be created when the Dev Service starts. A repository may optionally include an organization reference. For example, "my-org/my-repo" will create a repository named "my-repo" in the "my-org" organization. The organization will be created if missing. If no organization is specified, the repository will be created as a user repository.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_REPOSITORIES+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_REPOSITORIES+++`
+endif::add-copy-button-to-env-var[]
+--
+|list of string
+|`+++${quarkus.application.name}+++`
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-reuse]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-reuse[`quarkus.jgit.devservices.reuse`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.jgit.devservices.reuse+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+Should the container be reused?
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_REUSE+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_REUSE+++`
+endif::add-copy-button-to-env-var[]
+--
+|boolean
+|`+++false+++`
+
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-network-alias]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-network-alias[`quarkus.jgit.devservices.network-alias`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.jgit.devservices.network-alias+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+The network alias for the container. Other containers in the same network can use this alias to connect to this container.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_NETWORK_ALIAS+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_NETWORK_ALIAS+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|
+
+a| [[quarkus-jgit_quarkus-jgit-devservices-http-url]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-http-url[`quarkus.jgit.devservices.http-url`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.jgit.devservices.http-url+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+The HTTP URL of the dev services. Generated once the service is up and running.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_JGIT_DEVSERVICES_HTTP_URL+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_JGIT_DEVSERVICES_HTTP_URL+++`
+endif::add-copy-button-to-env-var[]
+--
+|link:https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URI.html[URI]
+|
+
+|===
+

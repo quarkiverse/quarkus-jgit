@@ -8,15 +8,20 @@
     </parent>
     <artifactId>quarkus-jgit-deployment</artifactId>
     <name>Quarkus - JGit - Deployment</name>
+    <description>Quarkus - JGit - Deployment</description>
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-core-deployment</artifactId>
+            <artifactId>quarkus-arc-deployment</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.jgit</groupId>
             <artifactId>quarkus-jgit</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-devservices-common</artifactId>
         </dependency>
     </dependencies>
     <build>

@@ -1,5 +1,22 @@
 package io.quarkus.jgit.deployment;
 
+import org.eclipse.jgit.api.MergeCommand;
+import org.eclipse.jgit.diff.DiffAlgorithm;
+import org.eclipse.jgit.dircache.DirCache;
+import org.eclipse.jgit.internal.JGitText;
+import org.eclipse.jgit.lib.BranchConfig;
+import org.eclipse.jgit.lib.CommitConfig;
+import org.eclipse.jgit.lib.CoreConfig;
+import org.eclipse.jgit.lib.GcConfig;
+import org.eclipse.jgit.lib.GpgConfig;
+import org.eclipse.jgit.lib.IndexDiff;
+import org.eclipse.jgit.lib.ObjectChecker;
+import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.lib.RefUpdate;
+import org.eclipse.jgit.lib.SignatureVerifier;
+import org.eclipse.jgit.lib.SubmoduleConfig;
+import org.eclipse.jgit.transport.HttpConfig;
+
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.ExtensionSslNativeSupportBuildItem;
@@ -10,7 +27,7 @@ import io.quarkus.deployment.builditem.nativeimage.RuntimeInitializedClassBuildI
 
 class JGitProcessor {
 
-    private static final String FEATURE = "jgit";
+    static final String FEATURE = "jgit";
 
     @BuildStep
     FeatureBuildItem feature() {
@@ -25,30 +42,37 @@ class JGitProcessor {
     @BuildStep
     ReflectiveClassBuildItem reflection() {
         //Classes that use reflection
-        return ReflectiveClassBuildItem
-                .builder("org.eclipse.jgit.api.MergeCommand$ConflictStyle",
-                        "org.eclipse.jgit.api.MergeCommand$FastForwardMode",
-                        "org.eclipse.jgit.api.MergeCommand$FastForwardMode$Merge",
-                        "org.eclipse.jgit.diff.DiffAlgorithm$SupportedAlgorithm",
-                        "org.eclipse.jgit.internal.JGitText",
-                        "org.eclipse.jgit.lib.CommitConfig$CleanupMode",
-                        "org.eclipse.jgit.lib.CoreConfig$AutoCRLF",
-                        "org.eclipse.jgit.lib.CoreConfig$CheckStat",
-                        "org.eclipse.jgit.lib.CoreConfig$EOL",
-                        "org.eclipse.jgit.lib.CoreConfig$EolStreamType",
-                        "org.eclipse.jgit.lib.CoreConfig$HideDotFiles",
-                        "org.eclipse.jgit.lib.CoreConfig$SymLinks",
-                        "org.eclipse.jgit.lib.CoreConfig$LogRefUpdates",
-                        "org.eclipse.jgit.lib.CoreConfig$TrustLooseRefStat",
-                        "org.eclipse.jgit.lib.CoreConfig$TrustPackedRefsStat")
-                .fields().methods()
-                .build();
+        return ReflectiveClassBuildItem.builder(
+                BranchConfig.BranchRebaseMode.class,
+                CommitConfig.CleanupMode.class,
+                CoreConfig.AutoCRLF.class,
+                CoreConfig.CheckStat.class,
+                CoreConfig.EOL.class,
+                CoreConfig.EolStreamType.class,
+                CoreConfig.HideDotFiles.class,
+                CoreConfig.LogRefUpdates.class,
+                CoreConfig.SymLinks.class,
+                CoreConfig.TrustStat.class,
+                DiffAlgorithm.SupportedAlgorithm.class,
+                DirCache.DirCacheVersion.class,
+                GcConfig.PackRefsMode.class,
+                GpgConfig.GpgFormat.class,
+                HttpConfig.HttpRedirectMode.class,
+                IndexDiff.StageState.class,
+                JGitText.class,
+                ObjectChecker.ErrorType.class,
+                MergeCommand.ConflictStyle.class,
+                MergeCommand.FastForwardMode.Merge.class,
+                MergeCommand.FastForwardMode.class,
+                Ref.Storage.class,
+                RefUpdate.Result.class,
+                SignatureVerifier.TrustLevel.class,
+                SubmoduleConfig.FetchRecurseSubmodulesMode.class).fields().methods().build();
     }
 
     @BuildStep
     void runtimeInitializedClasses(BuildProducer<RuntimeInitializedClassBuildItem> producer) {
         producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.internal.storage.file.WindowCache"));
-        producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.lib.GpgSigner"));
         producer.produce(new RuntimeInitializedClassBuildItem("org.eclipse.jgit.transport.HttpAuthMethod$Digest"));
     }
 

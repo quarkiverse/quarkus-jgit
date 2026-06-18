@@ -41,6 +41,43 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "iocanel",
+      "name": "Ioannis Canellos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/402008?v=4",
+      "profile": "http://iocanel.blogspot.com",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "melloware",
+      "name": "Melloware",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4399574?v=4",
+      "profile": "https://melloware.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jamesnetherton",
+      "name": "James Netherton",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4721408?v=4",
+      "profile": "https://jamesnetherton.github.io/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "phillip-kruger",
+      "name": "Phillip Krüger",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6836179?v=4",
+      "profile": "http://www.phillip-kruger.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
