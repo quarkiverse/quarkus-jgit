@@ -39,6 +39,13 @@ public class JGitTest {
     }
 
     @Test
+    void shouldLoadLfsNls() {
+        given().get("/jgit/lfs/nls").then()
+                .statusCode(200)
+                .body(is("Repository {0} not found"));
+    }
+
+    @Test
     void shouldCommit() {
         given().body("Test commit")
                 .post("/jgit/commit")

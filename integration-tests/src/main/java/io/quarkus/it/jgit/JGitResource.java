@@ -19,6 +19,7 @@ import jakarta.ws.rs.core.MediaType;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.internal.storage.file.WindowCache;
+import org.eclipse.jgit.lfs.internal.LfsText;
 import org.eclipse.jgit.lib.ObjectReader;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -109,6 +110,13 @@ public class JGitResource {
                     .call();
             return commit.getId().getName();
         }
+    }
+
+    @GET
+    @Path("/lfs/nls")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String lfsNls() {
+        return LfsText.get().repositoryNotFound;
     }
 
     private AbstractTreeIterator prepareTreeParser(Repository repository, RevCommit commit) throws IOException {
