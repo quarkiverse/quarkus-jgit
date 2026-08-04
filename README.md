@@ -44,6 +44,7 @@ Thanks go to these wonderful people ([emoji key](https://allcontributors.org/doc
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://www.phillip-kruger.com"><img src="https://avatars.githubusercontent.com/u/6836179?v=4?s=100" width="100px;" alt="Phillip Krüger"/><br /><sub><b>Phillip Krüger</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-jgit/commits?author=phillip-kruger" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/thibaultmeyer"><img src="https://avatars.githubusercontent.com/u/1005086?v=4?s=100" width="100px;" alt="Thibault Meyer"/><br /><sub><b>Thibault Meyer</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-jgit/issues?q=author%3Athibaultmeyer" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
