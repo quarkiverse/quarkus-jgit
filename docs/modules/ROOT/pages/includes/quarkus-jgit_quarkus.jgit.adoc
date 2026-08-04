@@ -7,7 +7,7 @@ h|[.header-title]##Configuration property##
 h|Type
 h|Default
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-enabled]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-enabled[`quarkus.jgit.devservices.enabled`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-enabled]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-enabled[`+++quarkus.jgit.devservices.enabled+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.jgit.devservices.enabled+++[]
 endif::add-copy-button-to-config-props[]
@@ -28,7 +28,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++false+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-show-logs]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-show-logs[`quarkus.jgit.devservices.show-logs`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-show-logs]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-show-logs[`+++quarkus.jgit.devservices.show-logs+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.jgit.devservices.show-logs+++[]
 endif::add-copy-button-to-config-props[]
@@ -49,7 +49,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++false+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-http-port]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-http-port[`quarkus.jgit.devservices.http-port`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-http-port]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-http-port[`+++quarkus.jgit.devservices.http-port+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.jgit.devservices.http-port+++[]
 endif::add-copy-button-to-config-props[]
@@ -70,7 +70,7 @@ endif::add-copy-button-to-env-var[]
 |int
 |
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-username]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-admin-username[`quarkus.jgit.devservices.admin-username`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-username]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-admin-username[`+++quarkus.jgit.devservices.admin-username+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.jgit.devservices.admin-username+++[]
 endif::add-copy-button-to-config-props[]
@@ -91,7 +91,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |`+++quarkus+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-password]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-admin-password[`quarkus.jgit.devservices.admin-password`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-admin-password]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-admin-password[`+++quarkus.jgit.devservices.admin-password+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.jgit.devservices.admin-password+++[]
 endif::add-copy-button-to-config-props[]
@@ -112,7 +112,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |`+++quarkus+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-organizations]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-organizations[`quarkus.jgit.devservices.organizations`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-organizations]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-organizations[`+++quarkus.jgit.devservices.organizations+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.jgit.devservices.organizations+++[]
 endif::add-copy-button-to-config-props[]
@@ -133,7 +133,7 @@ endif::add-copy-button-to-env-var[]
 |list of string
 |
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-repositories]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-repositories[`quarkus.jgit.devservices.repositories`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-repositories]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-repositories[`+++quarkus.jgit.devservices.repositories+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.jgit.devservices.repositories+++[]
 endif::add-copy-button-to-config-props[]
@@ -154,7 +154,7 @@ endif::add-copy-button-to-env-var[]
 |list of string
 |`+++${quarkus.application.name}+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-reuse]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-reuse[`quarkus.jgit.devservices.reuse`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-reuse]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-reuse[`+++quarkus.jgit.devservices.reuse+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.jgit.devservices.reuse+++[]
 endif::add-copy-button-to-config-props[]
@@ -175,7 +175,7 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++false+++`
 
-a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-network-alias]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-network-alias[`quarkus.jgit.devservices.network-alias`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-jgit_quarkus-jgit-devservices-network-alias]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-network-alias[`+++quarkus.jgit.devservices.network-alias+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.jgit.devservices.network-alias+++[]
 endif::add-copy-button-to-config-props[]
@@ -196,7 +196,7 @@ endif::add-copy-button-to-env-var[]
 |string
 |
 
-a| [[quarkus-jgit_quarkus-jgit-devservices-http-url]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-http-url[`quarkus.jgit.devservices.http-url`]##
+a| [[quarkus-jgit_quarkus-jgit-devservices-http-url]] [.property-path]##link:#quarkus-jgit_quarkus-jgit-devservices-http-url[`+++quarkus.jgit.devservices.http-url+++`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.jgit.devservices.http-url+++[]
 endif::add-copy-button-to-config-props[]
