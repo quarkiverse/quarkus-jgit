@@ -14,14 +14,26 @@ Once you have your Quarkus project configured you can add the `jgit` extension t
 ./mvnw quarkus:add-extension -Dextensions="jgit"
 ----
 
-This will add the following to your `pom.xml`:
+First, add the `quarkus-jgit-bom` to your project's `<dependencyManagement>` section to ensure version alignment of all JGit dependencies:
 
 [source,xml,subs=attributes+]
 ----
 <dependency>
     <groupId>io.quarkiverse.jgit</groupId>
-    <artifactId>quarkus-jgit</artifactId>
+    <artifactId>quarkus-jgit-bom</artifactId>
     <version>{quarkus-jgit-version}</version>
+    <type>pom</type>
+    <scope>import</scope>
+</dependency>
+----
+
+Then add the extension dependency without specifying a version:
+
+[source,xml]
+----
+<dependency>
+    <groupId>io.quarkiverse.jgit</groupId>
+    <artifactId>quarkus-jgit</artifactId>
 </dependency>
 ----
 
@@ -47,6 +59,24 @@ Here is an example using it in a JAX-RS endpoint:
 ====
 When building a native executable, make sure that the link:{quarkus-guides-url}/native-and-ssl#the-truststore-path[SSL support is configured appropriately].
 ====
+
+== Git LFS Support
+
+https://git-lfs.com/[Git Large File Storage (LFS)] is a Git extension that replaces large files (such as binaries, media assets, and datasets) with lightweight pointers in the repository, while storing the actual file contents on a remote server.
+
+The extension automatically detects the presence of the JGit LFS module on the classpath and registers the necessary classes for native image compilation.
+
+To enable Git LFS support, add the following dependency to your project:
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.eclipse.jgit</groupId>
+    <artifactId>org.eclipse.jgit.lfs</artifactId>
+</dependency>
+----
+
+No additional configuration is required.
 
 == DevServices
 
