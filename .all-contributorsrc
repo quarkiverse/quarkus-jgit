@@ -78,6 +78,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "thibaultmeyer",
+      "name": "Thibault Meyer",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1005086?v=4",
+      "profile": "https://github.com/thibaultmeyer",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
