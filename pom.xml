@@ -14,6 +14,7 @@
     <modules>
         <module>deployment</module>
         <module>runtime</module>
+        <module>bom</module>
     </modules>
     <properties>
         <quarkus.version>3.33.3</quarkus.version>
@@ -87,41 +88,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>io.sundr</groupId>
-                <artifactId>sundr-maven-plugin</artifactId>
-                <version>0.300.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate-bom</goal>
-                        </goals>
-                        <configuration>
-                            <boms>
-                                <bom>
-                                    <artifactId>quarkus-jgit-bom</artifactId>
-                                    <name>Quarkus JGit: BOM</name>
-                                    <description>Centralized dependencyManagement for the Quarkus JGit Project
-                                    </description>
-                                    <dependencies>
-                                        <includes>
-                                            <include>org.eclipse.jgit:*</include>
-                                        </includes>
-                                    </dependencies>
-                                    <modules>
-                                        <excludes>
-                                            <exclude>io.quarkiverse.jgit:quarkus-jgit-docs</exclude>
-                                            <exclude>io.quarkiverse.jgit:quarkus-jgit-integration-tests</exclude>
-                                        </excludes>
-                                    </modules>
-                                </bom>
-                            </boms>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
     </build>
     <profiles>
         <profile>

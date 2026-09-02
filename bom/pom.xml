@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.quarkiverse.jgit</groupId>
+        <artifactId>quarkus-jgit-parent</artifactId>
+        <version>999-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>quarkus-jgit-bom</artifactId>
+    <packaging>pom</packaging>
+    <name>Quarkus - JGit - BOM</name>
+    <description>Centralized dependencyManagement for the Quarkus JGit Project</description>
+    <!--
+        The third-party JGit dependencies are declared here (versions inherited from the parent's
+        dependencyManagement) so the bom-builder3 plugin can collect them into the generated BOM via
+        directDependencies=CURRENT_PROJECT. The reactor extension modules are collected via
+        reactorDependencies=REACTOR.
+    -->
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.jgit</groupId>
+            <artifactId>org.eclipse.jgit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jgit</groupId>
+            <artifactId>org.eclipse.jgit.ssh.jsch</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jgit</groupId>
+            <artifactId>org.eclipse.jgit.lfs</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>eu.maveniverse.maven.plugins</groupId>
+                <artifactId>bom-builder3</artifactId>
+                <version>1.3.4</version>
+                <executions>
+                    <execution>
+                        <id>build-bom</id>
+                        <goals>
+                            <goal>build-bom</goal>
+                        </goals>
+                        <configuration>
+                            <attach>true</attach>
+                            <bomName>Quarkus JGit: BOM</bomName>
+                            <bomDescription>Centralized dependencyManagement for the Quarkus JGit Project</bomDescription>
+                            <reactorDependencies>REACTOR</reactorDependencies>
+                            <directDependencies>CURRENT_PROJECT</directDependencies>
+                            <dependencyInclusions>
+                                <dependencyInclusion>
+                                    <groupId>io.quarkiverse.jgit</groupId>
+                                    <artifactId>*</artifactId>
+                                </dependencyInclusion>
+                                <dependencyInclusion>
+                                    <groupId>org.eclipse.jgit</groupId>
+                                    <artifactId>*</artifactId>
+                                </dependencyInclusion>
+                            </dependencyInclusions>
+                            <dependencyExclusions>
+                                <dependencyExclusion>
+                                    <groupId>io.quarkiverse.jgit</groupId>
+                                    <artifactId>quarkus-jgit-docs</artifactId>
+                                </dependencyExclusion>
+                                <dependencyExclusion>
+                                    <groupId>io.quarkiverse.jgit</groupId>
+                                    <artifactId>quarkus-jgit-integration-tests</artifactId>
+                                </dependencyExclusion>
+                            </dependencyExclusions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
