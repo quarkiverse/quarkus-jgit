@@ -18,7 +18,7 @@
     </modules>
     <properties>
         <quarkus.version>3.33.3</quarkus.version>
-        <jgit.version>7.7.1.202607240634-r</jgit.version>
+        <jgit.version>7.8.0.202609011348-r</jgit.version>
         <quarkus-jsch.version>3.2.1</quarkus-jsch.version>
     </properties>
     <scm>
