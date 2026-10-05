@@ -11,14 +11,13 @@ import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.CuratedApplicationShutdownBuildItem;
 import io.quarkus.deployment.builditem.DevServicesResultBuildItem;
-import io.quarkus.deployment.builditem.DevServicesResultBuildItem.RunningDevService;
 import io.quarkus.deployment.dev.devservices.DevServicesConfig;
 import io.quarkus.devservices.common.ContainerShutdownCloseable;
 
 public class JGitDevServicesProcessor {
 
     private static final Logger log = Logger.getLogger(JGitDevServicesProcessor.class);
-    static volatile RunningDevService devService;
+    static volatile DevServicesResultBuildItem devService;
 
     @BuildStep(onlyIfNot = IsNormal.class, onlyIf = { DevServicesConfig.Enabled.class })
     DevServicesResultBuildItem createContainer(JGitBuildTimeConfig config,
@@ -46,7 +45,11 @@ public class JGitDevServicesProcessor {
 
         ContainerShutdownCloseable closeable = new ContainerShutdownCloseable(gitServer, JGitProcessor.FEATURE);
         closeBuildItem.addCloseTask(closeable::close, true);
-        devService = new RunningDevService(JGitProcessor.FEATURE, gitServer.getContainerId(), closeable, configOverrides);
+        devService = DevServicesResultBuildItem.discovered()
+                .feature(JGitProcessor.FEATURE)
+                .containerId(gitServer.getContainerId())
+                .config(configOverrides)
+                .build();
 
         giteaServiceInfo.produce(new GiteaDevServiceInfoBuildItem(
                 gitServer.getHost(),
@@ -57,6 +60,6 @@ public class JGitDevServicesProcessor {
                 config.devservices().adminPassword(),
                 gitServer.getOrganizations(),
                 gitServer.getRepositories()));
-        return devService.toBuildItem();
+        return devService;
     }
 }
