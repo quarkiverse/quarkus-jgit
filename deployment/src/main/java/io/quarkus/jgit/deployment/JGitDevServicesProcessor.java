@@ -6,7 +6,7 @@ import java.util.OptionalInt;
 
 import org.jboss.logging.Logger;
 
-import io.quarkus.deployment.IsNormal;
+import io.quarkus.deployment.IsProduction;
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.CuratedApplicationShutdownBuildItem;
@@ -19,7 +19,7 @@ public class JGitDevServicesProcessor {
     private static final Logger log = Logger.getLogger(JGitDevServicesProcessor.class);
     static volatile DevServicesResultBuildItem devService;
 
-    @BuildStep(onlyIfNot = IsNormal.class, onlyIf = { DevServicesConfig.Enabled.class })
+    @BuildStep(onlyIfNot = IsProduction.class, onlyIf = { DevServicesConfig.Enabled.class })
     DevServicesResultBuildItem createContainer(JGitBuildTimeConfig config,
             Optional<GiteaDevServiceRequestBuildItem> devServiceRequest,
             CuratedApplicationShutdownBuildItem closeBuildItem,
