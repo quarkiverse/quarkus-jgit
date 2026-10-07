@@ -19,7 +19,7 @@
     <properties>
         <quarkus.version>4.0.0.Beta1</quarkus.version>
         <jgit.version>7.8.0.202609011348-r</jgit.version>
-        <quarkus-jsch.version>3.2.1</quarkus-jsch.version>
+        <quarkus-jsch.version>4.0.0.Beta1</quarkus-jsch.version>
     </properties>
     <scm>
         <connection>scm:git:git@github.com:quarkiverse/quarkus-jgit.git</connection>
